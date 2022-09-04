@@ -10,7 +10,7 @@
 					<DataCard></DataCard>
 					<Notice v-show="false"></Notice>
 				</div>
-				
+
 				<!--中间-->
 				<div class="ten wide column">
 					<keep-alive include="Home">
@@ -82,9 +82,6 @@
 					this.$message.error(res.msg);
 				}
 			})
-			
-		},
-		methods:{
 			
 		},
 		components:{
