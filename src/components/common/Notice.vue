@@ -1,13 +1,13 @@
 <template>
-	<div>
-		<el-card class="notice" shadow="hover">
-			<div slot="header">
-			    <h4>公告栏</h4>
+	<div class="ui segments base_box">
+		<div class="ui secondary segment">
+			<h4>公告栏</h4>
+		</div>
+		<div class="ui teal segment">
+			<div class="ui items">
+				<h4>这是公告栏</h4>
 			</div>
-			<div style="width: 100%;">
-				<span>未经授权，禁止转载本站文章！</span>
-			</div>
-		</el-card>
+		</div>
 	</div>
 </template>
 
@@ -23,8 +23,5 @@
 </script>
 
 <style>
-	.notice {
-		text-align: left;
-		margin-bottom: 0.9375rem;
-	}
+
 </style>
