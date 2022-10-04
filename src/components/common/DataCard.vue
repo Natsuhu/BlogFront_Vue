@@ -1,5 +1,5 @@
 <template>
-	<div class="ui segments base_box">
+	<div class="ui segments">
 		<div class="ui card">
 			<div class="image">
 				<img src="avatar.jpg">
