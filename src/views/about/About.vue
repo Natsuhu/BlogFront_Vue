@@ -4,7 +4,7 @@
 		
 		<!--标题-->
 		<div class="ui top segment base_text_center">
-			<h2 class="base_text_500">关于爷</h2>
+			<h2 class="base_text_500">关于本站</h2>
 			<meting-js server="netease" type="song" :id="musicId" theme="#25CCF7" v-if="musicId!==''"></meting-js>
 			<div class="typo content base_margin_tb_large" v-html="content"></div>
 		</div>

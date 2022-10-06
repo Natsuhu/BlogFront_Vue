@@ -27,10 +27,10 @@
 			</div>
 		</div>
 		
-		<!--APlayer-->
+		<!--APlayer
 		<div>
 			<MyAPlayer/>
-		</div>
+		</div>-->
 		
 		<Footer/>
 	</div>
