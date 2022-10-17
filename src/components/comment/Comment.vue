@@ -16,7 +16,7 @@
 					<span class="author">{{ rootComment.content.nickname }}</span>
 					<div class="metadata">
 						<span class="date">{{ rootComment.content.createTime | dateFormat('YYYY-MM-DD HH:mm')}}</span>
-						<div class="ui blue mini button base_padding_lr_small" @click="setReply(rootComment.id , rootComment.content.nickname)">回复</div>
+						<div class="ui blue mini button base_padding_lr_small" @click="setReply(rootComment.id , rootComment.content.nickname , rootComment.content.originId)">回复</div>
 					</div>
 					<div class="text">
 						{{ rootComment.content.content }}
@@ -34,10 +34,10 @@
 							<span class="author">{{ childrenComment.content.nickname }}</span>
 							<div class="metadata">
 								<span class="date">{{ childrenComment.content.createTime | dateFormat('YYYY-MM-DD HH:mm')}}</span>
-								<div class="ui blue mini button base_padding_lr_small" @click="setReply(childrenComment.id , childrenComment.content.nickname)">回复</div>
+								<div class="ui blue mini button base_padding_lr_small" @click="setReply(childrenComment.id , childrenComment.content.nickname , childrenComment.content.originId)">回复</div>
 							</div>
 							<div class="text">
-								<span>@{{ childrenComment.content.replay_nickname }}&nbsp;&nbsp;</span>{{ childrenComment.content.content }}
+								<span>@{{ childrenComment.content.replayNickname }}&nbsp;&nbsp;</span>{{ childrenComment.content.content }}
 							</div>
 							<CommentForm v-if="parentCommentId===childrenComment.id"/>
 						</div>
@@ -46,12 +46,19 @@
 				
 			</div>
 		</div>
+
+		<!--分页-->
+		<div class="base_text_center base_margin_b">
+			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="commentQueryParams.pageNo"
+				@current-change="handleCurrentChange">
+			</el-pagination>
+		</div>
 	</div>
 </template>
 
 <script>
 	import {mapState} from 'vuex'
-	import {SET_PARENT_COMMENT_ID , SET_REPLY_NICKNAME} from "@/store/mutations-types"
+	import {SET_PARENT_COMMENT_ID , SET_REPLY_NICKNAME , SET_ORIGIN_ID , SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
 	import CommentForm from "@/components/comment/CommentForm"
 	
 	export default {
@@ -59,17 +66,22 @@
 		
 		props: {
 			count: 0,
-			comments: []
+			comments: Array
 		},
 		
 		computed: {
-			...mapState(['parentCommentId' , 'replyNickname'])
+			...mapState(['parentCommentId' , 'totalPage' , 'commentQueryParams'])
 		},
 		
 		methods: {
-			setReply(id , nickname) {
-				this.$store.commit(SET_PARENT_COMMENT_ID, id)
-				this.$store.commit(SET_REPLY_NICKNAME, nickname)
+			setReply(id , nickname , originId) {
+				this.$store.commit(SET_PARENT_COMMENT_ID , id)
+				this.$store.commit(SET_REPLY_NICKNAME , nickname)
+				this.$store.commit(SET_ORIGIN_ID , originId)
+			},
+			handleCurrentChange(newPage) {
+				this.$store.commit(SET_COMMENT_QUERY_PAGE_NO , newPage)
+				this.$store.dispatch('getComments')
 			}
 		},
 		

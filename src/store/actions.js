@@ -39,17 +39,18 @@ export default {
 	},
 	submitCommentForm({rootState, dispatch}) {
 		let form = {...rootState.commentForm}
-		form.page = rootState.commentQuery.page
-		form.blogId = rootState.commentQuery.blogId
+		form.page = rootState.commentQueryParams.page
+		form.articleId = rootState.commentQueryParams.articleId
 		form.parentCommentId = rootState.parentCommentId
-		form.replayNickname = rootState.replyNickname
+		form.replyNickname = rootState.replyNickname
+		form.originId = rootState.originId
 		saveComment(form).then(res => {
 			if (res.success) {
 				Notification({
 					title: '评论成功',
 					type: 'success'
 				})
-				dispatch('getCommentList')
+				dispatch('getComments')
 			} else {
 				Notification({
 					title: '评论失败',

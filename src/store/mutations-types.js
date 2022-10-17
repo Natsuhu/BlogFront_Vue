@@ -1,11 +1,14 @@
 export const SAVE_INTRODUCTION = 'saveIntroduction'
 export const SAVE_SITE_INFO = 'saveSiteInfo'
 export const SAVE_COMMENT_RESULT = 'saveCommentResult'
+/** 以上暂未用 */
 export const SET_COMMENT_QUERY_PAGE = 'setCommentQueryPage'
-export const SET_COMMENT_QUERY_BLOG_ID = 'setCommentQueryBlogId'
-export const SET_COMMENT_QUERY_PAGE_NUM = 'setCommentQueryPageNum'
+export const SET_COMMENT_QUERY_ARTICLE_ID = 'setCommentQueryArticleId'
+export const SET_COMMENT_QUERY_PAGE_NO = 'setCommentQueryPageNo'
 export const SET_PARENT_COMMENT_ID = 'setParentCommentId'
 export const SET_REPLY_NICKNAME = 'setReplyNickname'
+export const SET_ORIGIN_ID = 'setOriginId'
+/** 以下暂未使用 */
 export const RESET_COMMENT_FORM = 'resetCommentForm'
 export const RESTORE_COMMENT_FORM = 'restoreCommentForm'
 export const SET_IS_BLOG_RENDER_COMPLETE = 'setIsBlogRenderComplete'

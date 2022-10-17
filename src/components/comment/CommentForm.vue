@@ -21,7 +21,7 @@
 
 <script>
 	import {mapState} from 'vuex'
-	import {SET_PARENT_COMMENT_ID , SET_REPLY_NICKNAME} from "@/store/mutations-types"
+	import {SET_PARENT_COMMENT_ID , SET_REPLY_NICKNAME , SET_ORIGIN_ID} from "@/store/mutations-types"
 	
 	export default {
 		name: "CommentForm",
@@ -60,6 +60,7 @@
 			setReply() {
 				this.$store.commit(SET_PARENT_COMMENT_ID, -1)
 				this.$store.commit(SET_REPLY_NICKNAME, '')
+				this.$store.commit(SET_ORIGIN_ID , 0)
 			}
 		}
 		

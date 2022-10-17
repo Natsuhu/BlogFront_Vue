@@ -6,7 +6,7 @@ export default {
 		rollText: [],
 	},
 	commentQueryParams: {
-		//用于后端判断该评论所在页面类型(文章、友链、关于我)
+		//页面类型(0文章、1友链、2关于我)
 		page: 0,
 		articleId: null,
 		pageNo: 1,
@@ -22,6 +22,8 @@ export default {
 	parentCommentId: -1,
 	//回复的人的昵称
 	replyNickname: '',
+	//归属ID
+	originId: 0,
 	commentForm: {
 		content: '',
 		qq: '',
