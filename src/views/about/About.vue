@@ -13,7 +13,7 @@
 		<div class="ui segment teal" v-if="isComment">
 			<h3 class="base_text_500">评论区已关闭</h3>
 		</div>
-		<Comment v-else :count="count" :commentData="commentData"></Comment>
+		<Comment v-else :count="count" :comments="comments"></Comment>
 	</div>
 	
 </template>
@@ -28,7 +28,7 @@
 		name: 'About',
 		
 		computed: {
-			...mapState(['count', 'commentData'])
+			...mapState(['count', 'comments'])
 		},
 		
 		data() {
@@ -37,7 +37,7 @@
 				content: "",
 				musicId: "",
 				page: 2,
-				articleId: 0
+				articleId: null
 			}
 		},
 		
@@ -55,7 +55,7 @@
 							this.isComment = !this.isComment;
 							this.content = res.data.content;
 							this.musicId = res.data.musicId;
-							this.$store.dispatch('getCommentList')
+							this.$store.dispatch('getComments')
 						}else {
 							this.content = res.data.content;
 						}

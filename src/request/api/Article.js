@@ -1,17 +1,16 @@
 import request from "@/request/BaseRequest"
 
-export function getArticleList(params) {
+export function getHomeArticles(baseQueryParams) {
 	return request({
 		method: 'get',
 		url: '/articles',
 		params: {
-			page: params.page,
-			pageSize: params.pageSize
+			...baseQueryParams
 		}
 	})
 }
 
-export function getArticleById(id) {
+export function getReadArticleById(id) {
 	return request ({
 		method: 'get',
 		url: '/articles/read',
@@ -38,36 +37,22 @@ export function getRandomArticles(count) {
 	})
 }
 
-export function getArticleByCategoryId(params,categoryId) {
+export function getArticlesByCategoryId(articleQueryParams) {
 	return request ({
 		method: 'get',
 		url: '/articles/category',
 		params: {
-			page: params.page,
-			pageSize: params.pageSize,
-			categoryId
+			...articleQueryParams
 		}
 	})
 }
 
-export function getArticleByTagId(params,tagId) {
+export function getArticlesByTagId(articleQueryParams) {
 	return request ({
 		method: 'get',
 		url: '/articles/tag',
 		params: {
-			page: params.page,
-			pageSize: params.pageSize,
-			tagId
-		}
-	})
-}
-
-export function getArticleComments(articleId) {
-	return request ({
-		method: 'get',
-		url: '/articles/read/comments',
-		params: {
-			articleId
+			...articleQueryParams
 		}
 	})
 }

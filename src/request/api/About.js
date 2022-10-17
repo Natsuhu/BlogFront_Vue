@@ -6,10 +6,3 @@ export function getAboutPageSetting() {
 		url: '/about'
 	})
 }
-
-export function getAboutPageComments() {
-	return request({
-		method: 'get',
-		url: '/about/comments'
-	})
-}

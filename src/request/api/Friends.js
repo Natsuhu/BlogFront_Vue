@@ -6,10 +6,3 @@ export function getFriendsPageSetting() {
 		url: '/friends'
 	})
 }
-
-export function getFriendsPageComments() {
-	return request({
-		method: 'get',
-		url: '/friends/comments'
-	})
-}

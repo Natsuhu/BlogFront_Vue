@@ -31,10 +31,10 @@ export default {
 		state.comments = data.comments.list
 	},
 	[SET_COMMENT_QUERY_PAGE](state, page) {
-		state.commentQuery.page = page
+		state.commentQueryParams.page = page
 	},
 	[SET_COMMENT_QUERY_BLOG_ID](state, articleId) {
-		state.commentQuery.articleId = articleId
+		state.commentQueryParams.articleId = articleId
 	},
 	[SET_COMMENT_QUERY_PAGE_NUM](state, pageNum) {
 		state.commentQuery.pageNum = pageNum

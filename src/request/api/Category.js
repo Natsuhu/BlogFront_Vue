@@ -1,6 +1,6 @@
 import request from "@/request/BaseRequest"
 
-export function getCategoryList() {
+export function getCategories() {
 	return request({
 		method: 'get',
 		url: '/categories'

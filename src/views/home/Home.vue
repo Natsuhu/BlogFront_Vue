@@ -2,7 +2,7 @@
 	<div>
 		<ArticleItem v-for="(article , index) in articles" :key="index" :article="article"></ArticleItem>
 		<div class="pagination base_margin_b">
-			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="params.page"
+			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="baseQueryParams.page"
 				@current-change="handleCurrentChange">
 			</el-pagination>
 		</div>
@@ -11,7 +11,7 @@
 
 <script>
 	import ArticleItem from "@/components/articlelist/ArticleItem"
-	import {getArticleList} from "@/request/api/Article"
+	import {getHomeArticles} from "@/request/api/Article"
 	
 	export default {
 		name: "Home",
@@ -20,7 +20,7 @@
 			return{
 				articles: [],
 				totalPage: 0,
-				params: {
+				baseQueryParams: {
 					page: 1,
 					pageSize: 3
 				}
@@ -28,7 +28,7 @@
 		},
 		
 		created(){
-			getArticleList(this.params).then(res => {
+			getHomeArticles(this.baseQueryParams).then(res => {
 				if(res.success){
 					this.articles = res.data.dataList;
 					this.totalPage = res.data.totalPage;
@@ -41,8 +41,8 @@
 		methods:{
 			handleCurrentChange(newPage) {
 					window.scrollTo({top: 0, behavior: 'smooth'})
-					this.params.page = newPage
-					getArticleList(this.params).then(res => {
+					this.baseQueryParams.page = newPage
+					getArticleList(this.baseQueryParams).then(res => {
 					if(res.success){
 						this.articles = res.data.dataList;
 						this.totalPage = res.data.totalPage;

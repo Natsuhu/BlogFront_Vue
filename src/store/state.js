@@ -5,15 +5,19 @@ export default {
 		name: '',
 		rollText: [],
 	},
-	commentQuery: {
+	commentQueryParams: {
 		//用于后端判断该评论所在页面类型(文章、友链、关于我)
 		page: 0,
 		articleId: null,
+		pageNo: 1,
+		pageSize: 5
 	},
 	//评论数量
 	count: 0,
 	//评论列表
-	commentData: [],
+	comments: [],
+	//总页数
+	totalPage: 0,
 	//父评论ID
 	parentCommentId: -1,
 	//回复的人的昵称

@@ -1,6 +1,6 @@
 import request from "@/request/BaseRequest"
 
-export function getTagList() {
+export function getTags() {
 	return request({
 		method: 'get',
 		url: '/tags'

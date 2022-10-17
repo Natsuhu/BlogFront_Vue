@@ -46,8 +46,8 @@
 	import MyAPlayer from "@/components/common/MyAPlayer";
 	
 	import {getRandomArticles} from "@/request/api/Article"
-	import {getCategoryList} from "@/request/api/Category"
-	import {getTagList} from "@/request/api/Tag"
+	import {getCategories} from "@/request/api/Category"
+	import {getTags} from "@/request/api/Tag"
 	
 	export default {
 		data(){
@@ -59,7 +59,7 @@
 			}
 		},
 		created(){
-			getCategoryList().then(res => {
+			getCategories().then(res => {
 				//res.data就是后台返回的Result
 				//concat是数组的一个方法，使用此方法后，赋值的对象只能是数组
 				if(res.success){
@@ -68,7 +68,7 @@
 					this.$message.error(res.msg);
 				}
 			}),
-			getTagList(this.params).then(res => {
+			getTags().then(res => {
 				if(res.success){
 					this.tags = this.tags.concat(res.data);
 				}else {

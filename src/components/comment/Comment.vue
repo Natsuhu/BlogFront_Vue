@@ -8,7 +8,7 @@
 			<h3 class="ui header" v-else>快来抢沙发！</h3>
 			
 			<!--root评论-->
-			<div class="comment" v-for="(rootComment , index) in commentData" :key="index">
+			<div class="comment" v-for="(rootComment , index) in comments" :key="index">
 				<a class="avatar">
 					<img :src="rootComment.content.avatar">
 				</a>
@@ -59,7 +59,7 @@
 		
 		props: {
 			count: 0,
-			commentData: Array
+			comments: []
 		},
 		
 		computed: {

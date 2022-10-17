@@ -5,7 +5,7 @@
 		</div>
 		<ArticleItem v-for="(article , index) in articles" :key="index" :article="article"></ArticleItem>
 		<div class="pagination base_margin_b">
-			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="params.page"
+			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="articleQueryParams.page"
 				@current-change="handleCurrentChange">
 			</el-pagination>
 		</div>
@@ -14,7 +14,7 @@
 
 <script>
 	import ArticleItem from "@/components/articlelist/ArticleItem"
-	import {getArticleByTagId} from "@/request/api/Article"
+	import {getArticlesByTagId} from "@/request/api/Article"
 	
 	export default {
 		name: "Tag",
@@ -23,35 +23,37 @@
 			return{
 				articles: [],
 				totalPage: 0,
-				params: {
-					page: 1,
+				articleQueryParams: {
+					tagIds: [],
+					pageNo: 1,
 					pageSize: 3
 				}
 			}
 		},
 		
 		computed: {
-			TagId() {
+			tagId() {
 				return parseInt(this.$route.params.id)
 			}
 		},
 		
 		beforeRouteUpdate(to, from, next) {
 			if (to.path !== from.path) {
-				this.getArticleByTagId(this.params,to.params.id)
+				this.getArticlesByTagId(this.articleQueryParams)
 				next()
 			}
 		},
 		
 		created(){
-			this.getArticleByTagId(this.params)
+			this.articleQueryParams.tagIds.push(this.tagId)
+			this.getArticlesByTagId(this.articleQueryParams)
 		},
 		
 		methods:{
 			handleCurrentChange(newPage) {
 					window.scrollTo({top: 0, behavior: 'smooth'})
-					this.params.page = newPage
-					getArticleByTagId(this.params,this.TagId).then(res => {
+					this.articleQueryParams.page = newPage
+					getArticleByTagId(this.articleQueryParams).then(res => {
 					if(res.success){
 						this.articles = res.data.dataList;
 						this.totalPage = res.data.totalPage;
@@ -60,8 +62,8 @@
 					}
 				})
 			},
-			getArticleByTagId(params , id = this.TagId) {
-				getArticleByTagId(params , id).then(res => {
+			getArticlesByTagId(articleQueryParams) {
+				getArticlesByTagId(articleQueryParams).then(res => {
 					if(res.success){
 						this.articles = res.data.dataList;
 						this.totalPage = res.data.totalPage;

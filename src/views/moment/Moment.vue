@@ -27,21 +27,25 @@
 </template>
 
 <script>
-	import {getMomentList} from '@/request/api/Moment'
+	import {getPublicMoments} from '@/request/api/Moment'
 	
 	export default {
 		name: 'Moment',
 		
 		data() {
 			return {
-				moments: []
+				moments: [],
+				baseQueryParams: {
+					pageNo: 1,
+					pageSize: 10
+				}
 			}
 		},
 		
 		created() {
-			getMomentList().then(res => {
+			getPublicMoments(this.baseQueryParams).then(res => {
 				if(res.success){
-					this.moments = res.data;
+					this.moments = res.data.dataList;
 				}else {
 					this.$message.error(res.msg);
 				}

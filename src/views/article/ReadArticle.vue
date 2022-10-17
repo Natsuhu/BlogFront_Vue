@@ -66,7 +66,8 @@
 
 <script>
 	import Comment from "@/components/comment/Comment"
-	import {getArticleById , getArticleComments} from "@/request/api/Article";
+	import {getReadArticleById} from "@/request/api/Article"
+	import {getArticleComments} from "@/request/api/Comment"
 	import Prism from 'prismjs';
 	
 	export default {
@@ -108,12 +109,12 @@
 		},
 		
 		created() {
-			this.getArticle()
+			this.getReadArticleById()
 		},
 		
 		methods:{
-			getArticle(id = this.articleId){
-				getArticleById(id).then((res) => {
+			getReadArticleById(id = this.articleId){
+				getReadArticleById(id).then((res) => {
 					if(res.success){
 						this.article = res.data;
 						this.category = this.article.category
@@ -121,7 +122,7 @@
 						//如果允许评论则获取评论数据
 						if(this.article.isCommentEnabled) {
 							this.isComment = !this.isComment;
-							this.getComments();
+							this.getArticleComments();
 						}
 						
 						//渲染代码高亮，但目前没生效
@@ -133,7 +134,7 @@
 					}
 				})
 			},
-			getComments(id = this.articleId) {
+			getArticleComments(id = this.articleId) {
 				getArticleComments(id).then(res=>{
 					if(res.success) {
 						this.count = res.data.count;

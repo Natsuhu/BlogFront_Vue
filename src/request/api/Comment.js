@@ -9,3 +9,23 @@ export function saveComment(comment) {
 		}
 	})
 }
+
+export function getArticleComments(commentQueryParams) {
+	return request({
+		method: 'get' ,
+		url: '/comments/articleComments',
+		params: {
+			...commentQueryParams
+		}
+	})
+}
+
+export function getPageComments(commentQueryParams) {
+	return request({
+		method: 'get' ,
+		url: '/comments/pageComments',
+		params: {
+			...commentQueryParams
+		}
+	})
+}
