@@ -21,6 +21,12 @@
 					</a>
 				</div>
 			</div>
+
+			<div class="base_text_center base_margin_b">
+				<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="baseQueryParams.pageNo"
+					@current-change="handleCurrentChange">
+				</el-pagination>
+			</div>
 		</div>
 		
 	</div>
@@ -35,9 +41,10 @@
 		data() {
 			return {
 				moments: [],
+				totalPage: 0,
 				baseQueryParams: {
 					pageNo: 1,
-					pageSize: 10
+					pageSize: 8
 				}
 			}
 		},
@@ -45,12 +52,29 @@
 		created() {
 			getPublicMoments(this.baseQueryParams).then(res => {
 				if(res.success){
-					this.moments = res.data.dataList;
+					this.moments = res.data.dataList
+					this.totalPage = res.data.totalPage
 				}else {
 					this.$message.error(res.msg);
 				}
 			})
-		}
+		},
+
+		methods:{
+			handleCurrentChange(newPage) {
+					window.scrollTo({top: 0, behavior: 'smooth'})
+					this.baseQueryParams.pageNo = newPage
+					getPublicMoments(this.baseQueryParams).then(res => {
+					if(res.success){
+						this.moments = res.data.dataList;
+						this.totalPage = res.data.totalPage;
+					}else {
+						this.$message.error(res.msg);
+					}
+				})
+			}
+		},
+
 	}
 </script>
 

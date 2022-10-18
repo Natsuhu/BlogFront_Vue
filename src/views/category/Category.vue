@@ -39,6 +39,7 @@
 		
 		beforeRouteUpdate(to, from, next) {
 			if (to.path !== from.path) {
+				this.articleQueryParams.categoryId = to.params.id
 				this.getArticlesByCategoryId(this.articleQueryParams)
 				next()
 			}

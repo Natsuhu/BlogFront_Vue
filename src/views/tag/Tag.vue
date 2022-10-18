@@ -24,7 +24,7 @@
 				articles: [],
 				totalPage: 0,
 				articleQueryParams: {
-					tagIds: [],
+					tagIds: 0,
 					pageNo: 1,
 					pageSize: 3
 				}
@@ -39,13 +39,14 @@
 		
 		beforeRouteUpdate(to, from, next) {
 			if (to.path !== from.path) {
+				this.articleQueryParams.tagIds = to.params.id
 				this.getArticlesByTagId(this.articleQueryParams)
 				next()
 			}
 		},
 		
 		created(){
-			this.articleQueryParams.tagIds.push(this.tagId)
+			this.articleQueryParams.tagIds = this.tagId
 			this.getArticlesByTagId(this.articleQueryParams)
 		},
 		
