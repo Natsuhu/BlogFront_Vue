@@ -37,7 +37,7 @@
 								<div class="ui blue mini button base_padding_lr_small" @click="setReply(childrenComment.id , childrenComment.content.nickname , childrenComment.content.originId)">回复</div>
 							</div>
 							<div class="text">
-								<span>@{{ childrenComment.content.replayNickname }}&nbsp;&nbsp;</span>{{ childrenComment.content.content }}
+								<span>@{{ childrenComment.content.replyNickname }}&nbsp;&nbsp;</span>{{ childrenComment.content.content }}
 							</div>
 							<CommentForm v-if="parentCommentId===childrenComment.id"/>
 						</div>

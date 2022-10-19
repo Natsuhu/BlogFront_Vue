@@ -21,7 +21,7 @@ export default {
 	//父评论ID
 	parentCommentId: -1,
 	//回复的人的昵称
-	replyNickname: '',
+	replyNickname: null,
 	//归属ID
 	originId: 0,
 	commentForm: {

@@ -59,7 +59,7 @@
 			},
 			setReply() {
 				this.$store.commit(SET_PARENT_COMMENT_ID, -1)
-				this.$store.commit(SET_REPLY_NICKNAME, '')
+				this.$store.commit(SET_REPLY_NICKNAME, null)
 				this.$store.commit(SET_ORIGIN_ID , 0)
 			}
 		}
