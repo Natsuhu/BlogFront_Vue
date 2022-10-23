@@ -1,13 +1,17 @@
-import axios from 'axios'
+import axios, { Axios } from 'axios'
 //请求进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 const service = axios.create({
-	baseURL: "http://127.0.0.1:8090",
-	timeout: 10000,
 	headers: {'Content-Type': 'application/json'}
 })
+
+// 后端程序地址
+service.defaults.baseURL = window.env.API_BASE_URL
+
+// 超时时长配置
+service.defaults.timeout =  window.env.AXIOS_TIMEOUT
 
 // 请求拦截
 service.interceptors.request.use(
