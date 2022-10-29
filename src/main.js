@@ -7,9 +7,10 @@ import VueAxios from 'vue-axios'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min.js'
 import './assets/css/base.css'
 import './assets/css/typo.css'
-import 'semantic-ui-css/semantic.min.css'
 import './utils/TimeUtils'
 import './utils/directive'
 
@@ -21,7 +22,6 @@ console.log(
 	'background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #000',
 	'background:transparent'
 )
-
 Vue.use(VueAxios,axios)
 Vue.use(ElementUI)
 
