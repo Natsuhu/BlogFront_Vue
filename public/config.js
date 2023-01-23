@@ -1,7 +1,7 @@
 window.env = {
 
   // API配置
-  API_BASE_URL: 'http://175.178.247.100:8090',
+  API_BASE_URL: 'http://127.0.0.1:8090',
 
   // Ajax请求(常规)超时时长配置（ms）
   AXIOS_TIMEOUT: 30000,

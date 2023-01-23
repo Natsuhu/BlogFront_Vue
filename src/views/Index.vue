@@ -14,7 +14,7 @@
 				<!--中间-->
 				<div class="ten wide column">
 					<keep-alive include="Home">
-						<router-view/>
+						<router-view class="indexAnimate"/>
 					</keep-alive>
 				</div>
 				
@@ -24,13 +24,16 @@
 					<TagList :tags="tags"></TagList>
 				</div>
 				
+				<!-- 回到顶部 -->
+				<el-backtop></el-backtop>
+				
 			</div>
 		</div>
 		
-		<!--APlayer
-		<div>
+		<!-- APlayer -->
+		<!-- <div>
 			<MyAPlayer/>
-		</div>-->
+		</div> -->
 		
 		<Footer/>
 	</div>
@@ -115,6 +118,12 @@
 
 	.ten.wide {
 		padding-top: 0px !important;
+	}
+	
+	.indexAnimate {
+		height: 95%;
+		animation-name: fadeIn;
+		animation-duration: 0.5s;
 	}
 	
 	@media screen and (max-width: 750px) {

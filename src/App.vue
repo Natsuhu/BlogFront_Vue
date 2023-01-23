@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-		<router-view></router-view>
-		<el-backtop style="z-index: 1;"></el-backtop>
+		<router-view class="appAnimate"></router-view>
   </div>
 </template>
 
@@ -10,5 +9,9 @@
 </script>
 
 <style>
-
+	.appAnimate{
+		height: 95%;
+		animation-name: fadeIn;
+		animation-duration: 0.5s;
+	}
 </style>
