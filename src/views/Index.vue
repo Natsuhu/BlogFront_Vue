@@ -102,7 +102,7 @@
 <style scoped>	
 	.index-site {
 		display: flex;
-		min-height: 100vh; /* 没有元素时，也把页面撑开至100% */
+		min-height: 100vh; /* 没有元素时，把页面撑开至100% */
 		flex-direction: column;
 	}
 
@@ -121,7 +121,6 @@
 	}
 	
 	.indexAnimate {
-		height: 95%;
 		animation-name: fadeIn;
 		animation-duration: 0.5s;
 	}

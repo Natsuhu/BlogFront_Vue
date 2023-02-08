@@ -3,6 +3,8 @@
 </template>
 
 <script>
+	import APlayer from 'aplayer'
+	import 'aplayer/dist/APlayer.min.css'
 	export default {
 		name: "MyAPlayer",
 		data() {
@@ -12,7 +14,7 @@
 		      {
 		        name: "温软宇宙",   // 音频名称
 		        artist: "Crazy Bucket 陈楒潼", // 音频艺术家
-		        url: "http://127.0.0.1:8090/music/1.flac",    // 音频链接
+		        url: "http://127.0.0.1:8090/data/1.flac",    // 音频链接
 		        cover: "",  // 音频封面
 		        lrc: "",    // 歌词
 		        theme: "#66ccff",  // 播放这首歌曲时的主题色

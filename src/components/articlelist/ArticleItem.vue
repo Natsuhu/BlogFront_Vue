@@ -1,6 +1,11 @@
 <template>
 	<div class="ui segment base_margin_b_large">
 		
+		<!-- 置顶标记 -->
+		<div class="ui large red right corner label" v-if="article.isTop">
+			<i class="arrow alternate circle up icon"></i>
+		</div>
+		
 		<div class="ui grid base_margin_lr">
 			<!--标题-->
 			<div class="row">
@@ -20,9 +25,9 @@
 			</div>
 			
 			<!--文章分类-->
-			<a class="ui ribbon large label teal base_article_category">
+			<div @click="categoryRoute(article.category.id)" class="ui large label teal base_text_point base_category">
 				<i class="small folder open icon"></i><span class="base_text_500">{{ article.category.name }}</span>
-			</a>
+			</div>
 			
 			<!--文章描述-->
 			<div class="row">
@@ -30,7 +35,9 @@
 			</div>
 			
 			<!--首图-->
-			<div class="row"></div>
+			<div class="row">
+				<img class="ui centered rounded image" :src="article.thumbnail">
+			</div>
 			
 			<!--按钮-->
 			<div class="row">
@@ -69,20 +76,23 @@
 		methods:{
 			read(id){
 				return router.push(`/articles/read/${id}`);
+			},
+			categoryRoute(id) {
+				this.$router.push(`/articles/category/${id}`)
 			}
+		},
+		
+		mounted() {
+			
 		}
 	}
 </script>
 
 <style>
-	.base_article_category {
-		position: relative !important;
-		left: -45px !important;
-	}
-	
-	.base_summary_area {
-		font-size: 15px;
-		text-align: left;
-		line-height: 1.8;
+	.base_category {
+		position: relative;
+		right: 2.2em;
+		border-top-left-radius: 0px !important;
+		border-bottom-left-radius: 0px !important;
 	}
 </style>

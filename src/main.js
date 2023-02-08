@@ -6,8 +6,6 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 import Animated from 'animate.css'
-import APlayer from 'aplayer'
-import 'aplayer/dist/APlayer.min.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'semantic-ui-css/semantic.min.css'
