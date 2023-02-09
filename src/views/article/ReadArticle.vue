@@ -28,8 +28,8 @@
 					</div>
 					
 					<!--文章分类-->
-					<div class="ui large ribbon teal label base_article_category">
-						<i class="small folder open icon"></i><span class="base_text_500">{{ category.name }}</span>
+					<div @click="categoryRoute(article.category.id)" class="ui large label teal base_text_point base_category">
+						<i class="small folder open icon"></i><span class="base_text_500">{{ article.category.name }}</span>
 					</div>
 					
 					<div class="row"/>
@@ -60,15 +60,16 @@
 		<div class="ui segment teal" v-if="isComment">
 			<h3 class="base_text_500">评论区已关闭</h3>
 		</div>
-		<Comment v-else :count="count" :commentData="commentData"></Comment>
+		<Comment v-else :count="count" :comments="comments"></Comment>
 	</div>
 </template>
 
 <script>
 	import Comment from "@/components/comment/Comment"
 	import {getReadArticleById} from "@/request/api/Article"
-	import {getArticleComments} from "@/request/api/Comment"
-	import Prism from 'prismjs';
+	import {SET_COMMENT_QUERY_PAGE , SET_COMMENT_QUERY_ARTICLE_ID , SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
+	import {mapState} from 'vuex'
+	import Prism from 'prismjs'
 	
 	export default {
 		name: "ReadArticle",
@@ -76,17 +77,15 @@
 		data() {
 			return {
 				article: {},
-				category: {},
 				//是否允许评论，true为关闭评论
 				isComment: true,
-				//评论数量
-				count: 0,
-				//评论数据
-				commentData: []
+				//阅读文章页面为0
+				page: 0
 			}
 		},
 		
 		computed: {
+			...mapState(['count', 'comments']),
 			articleId() {
 				return parseInt(this.$route.params.id)
 			}
@@ -103,26 +102,27 @@
 			// 如果是跳转锚点，path不会改变，hash会改变，to.path===from.path, to.hash!==from.path 不放行路由跳转，就能让锚点正常跳转
 			if (to.path !== from.path) {
 				//在当前组件内路由到其它博客文章时，要重新获取文章
+				this.commitParam()
 				this.getArticle(to.params.id)
 				next()
 			}
 		},
 		
 		created() {
-			this.getReadArticleById()
+			this.commitParam()
+			this.getArticle()
 		},
 		
 		methods:{
-			getReadArticleById(id = this.articleId){
+			getArticle(id = this.articleId){
 				getReadArticleById(id).then((res) => {
 					if(res.success){
 						this.article = res.data;
 						this.category = this.article.category
-						
+						this.isComment = !this.article.isCommentEnabled;
 						//如果允许评论则获取评论数据
 						if(this.article.isCommentEnabled) {
-							this.isComment = !this.isComment;
-							this.getArticleComments();
+							this.$store.dispatch('getComments');
 						}
 						
 						//渲染代码高亮，但目前没生效
@@ -134,17 +134,14 @@
 					}
 				})
 			},
-			getArticleComments(id = this.articleId) {
-				getArticleComments(id).then(res=>{
-					if(res.success) {
-						this.count = res.data.count;
-						this.commentData = res.data.commentData
-					}else {
-						this.$message.error(res.msg)
-					}
-				})
+			commitParam() {
+				this.$store.commit(SET_COMMENT_QUERY_PAGE_NO , 1)
+				this.$store.commit(SET_COMMENT_QUERY_PAGE, this.page)
+				this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, this.articleId)
+			},
+			categoryRoute(id) {
+				this.$router.push(`/articles/category/${id}`)
 			}
-			
 		},
 		
 		components:{
@@ -154,9 +151,11 @@
 </script>
 
 <style scoped>
-	.base_article_category {
-		position: relative !important;
-		left: -45px !important;
+	.base_category {
+		position: relative;
+		right: 2.2em;
+		border-top-left-radius: 0px !important;
+		border-bottom-left-radius: 0px !important;
 	}
 	
 	h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {

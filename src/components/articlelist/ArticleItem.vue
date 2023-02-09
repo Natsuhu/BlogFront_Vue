@@ -88,7 +88,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.base_category {
 		position: relative;
 		right: 2.2em;

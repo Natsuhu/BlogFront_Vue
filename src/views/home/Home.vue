@@ -30,8 +30,8 @@
 		created(){
 			getHomeArticles(this.baseQueryParams).then(res => {
 				if(res.success){
-					this.articles = res.data.dataList;
-					this.totalPage = res.data.totalPage;
+					this.articles = res.data;
+					this.totalPage = res.totalPage;
 				}else {
 					this.$message.error(res.msg);
 				}
@@ -44,8 +44,8 @@
 					this.baseQueryParams.pageNo = newPage
 					getHomeArticles(this.baseQueryParams).then(res => {
 					if(res.success){
-						this.articles = res.data.dataList;
-						this.totalPage = res.data.totalPage;
+						this.articles = res.data;
+						this.totalPage = res.totalPage;
 					}else {
 						this.$message.error(res.msg);
 					}

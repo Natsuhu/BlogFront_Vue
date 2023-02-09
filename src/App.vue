@@ -10,7 +10,6 @@
 
 <style>
 	.appAnimate{
-		height: 95%;
 		animation-name: fadeIn;
 		animation-duration: 0.5s;
 	}
