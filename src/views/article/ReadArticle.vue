@@ -79,8 +79,6 @@
 				article: {},
 				//是否允许评论，true为关闭评论
 				isComment: true,
-				//阅读文章页面为0
-				page: 0
 			}
 		},
 		
@@ -102,14 +100,14 @@
 			// 如果是跳转锚点，path不会改变，hash会改变，to.path===from.path, to.hash!==from.path 不放行路由跳转，就能让锚点正常跳转
 			if (to.path !== from.path) {
 				//在当前组件内路由到其它博客文章时，要重新获取文章
-				this.commitParam()
+				this.commitParam(to.params.id)
 				this.getArticle(to.params.id)
 				next()
 			}
 		},
 		
 		created() {
-			this.commitParam()
+			this.init()
 			this.getArticle()
 		},
 		
@@ -124,7 +122,6 @@
 						if(this.article.isCommentEnabled) {
 							this.$store.dispatch('getComments');
 						}
-						
 						//渲染代码高亮，但目前没生效
 						this.$nextTick(() => {
 							Prism.highlightAll()
@@ -134,10 +131,14 @@
 					}
 				})
 			},
-			commitParam() {
-				this.$store.commit(SET_COMMENT_QUERY_PAGE_NO , 1)
-				this.$store.commit(SET_COMMENT_QUERY_PAGE, this.page)
+			init() {
+				this.$store.commit(SET_COMMENT_QUERY_PAGE_NO, 1)
+				this.$store.commit(SET_COMMENT_QUERY_PAGE, 0)
 				this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, this.articleId)
+			},
+			//更新路由时，提交文章ID，以获取评论
+			commitParam(id) {
+				this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, id)
 			},
 			categoryRoute(id) {
 				this.$router.push(`/articles/category/${id}`)
