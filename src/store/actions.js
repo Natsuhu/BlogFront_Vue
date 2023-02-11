@@ -13,7 +13,7 @@ export default {
 				} else {
 					Notification({
 						title: '错误',
-						message: '获取评论失败',
+						message: res.msg,
 						type: 'error'
 					})
 				}
@@ -29,7 +29,7 @@ export default {
 				} else {
 					Notification({
 						title: '错误',
-						message: '获取评论失败',
+						message: res.msg,
 						type: 'error'
 					})
 				}

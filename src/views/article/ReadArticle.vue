@@ -29,7 +29,7 @@
 					
 					<!--文章分类-->
 					<div @click="categoryRoute(article.category.id)" class="ui large label teal base_text_point base_category">
-						<i class="small folder open icon"></i><span class="base_text_500">{{ article.category.name }}</span>
+						<i class="small folder open icon"></i><span class="base_text_500">{{ category.name }}</span>
 					</div>
 					
 					<div class="row"/>
@@ -77,6 +77,7 @@
 		data() {
 			return {
 				article: {},
+				category: {},
 				//是否允许评论，true为关闭评论
 				isComment: true,
 			}
