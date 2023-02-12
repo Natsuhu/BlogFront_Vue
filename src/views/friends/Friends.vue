@@ -9,14 +9,22 @@
 		<!--链接卡片-->
 		<div class="ui segment">
 			<div class="ui stackable three column grid base_margin_b">
-				<div class="column" v-for="index of 1" :key="index">
-					<div class="ui link card">
+				<div class="column" v-for="(friend , index) in friends" :key="index">
+					<a class="ui link card" :href="friend.website">
 						<div class="image">
-							<img src="avatar.jpg">
+							<img :src="friend.avatar">
 						</div>
 						<div class="content">
-							<div class="header">我自己</div>
-							<div class="description">不忘初心，方得始终</div>
+							<div class="header">{{ friend.nickname }}</div>
+							<div class="description">{{ friend.description }}</div>
+						</div>
+					</a>
+				</div>
+				<div class="column">
+					<div class="ui link card base_show_modal" style="height: 100%;">
+						<div class="content">
+							<div class="header"><i class="icon plus"/>申请友链</div>
+							<div class="description">Do you like van 游戏 ？</div>
 						</div>
 					</div>
 				</div>
@@ -26,6 +34,42 @@
 		<!--文字内容-->
 		<div class="ui blue segment">
 			<div class="typo content" v-html="content"></div>
+		</div>
+		
+		<!--申请友链弹出框-->
+		<div class="ui tiny modal">
+			<div class="header">申请友链</div>
+			<div class="ui list">
+				<div class="ui item">
+					<div class="ui left icon input">
+						<input type="text" placeholder="名称">
+						<i class="users icon"></i>
+					</div>
+					<div class="ui left icon input">
+						<input type="text" placeholder="签名">
+						<i class="users icon"></i>
+					</div>
+				</div>
+				<div class="ui item">
+					<div class="ui left icon input">
+						<input type="text" placeholder="博客地址">
+						<i class="users icon"></i>
+					</div>
+					<div class="ui left icon input">
+						<input type="text" placeholder="头像地址">
+						<i class="users icon"></i>
+					</div>
+				</div>
+				<div class="ui item">
+					<button class="ui primary right labeled right floated icon button">
+						提交<i class="icon check"></i>
+					</button>
+					<button class="ui right floated button">
+						取消
+					</button>
+				</div>
+			</div>
+			
 		</div>
 		
 		<!--评论区-->
@@ -40,7 +84,7 @@
 
 <script>
 	import Comment from "@/components/comment/Comment"
-	import {getFriendsPageSetting} from "@/request/api/Friends"
+	import {getFriendsPageSetting , getFriends} from "@/request/api/Friends"
 	import {SET_COMMENT_QUERY_PAGE , SET_COMMENT_QUERY_ARTICLE_ID , SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
 	import {mapState} from 'vuex'
 	
@@ -53,6 +97,7 @@
 		
 		data() {
 			return {
+				friends: [],
 				isComment: true,
 				content: "",
 				page: 1,
@@ -62,10 +107,18 @@
 		
 		created() {
 			this.init();
+			this.getFriends();
 			this.getSetting();
 		},
 		
 		methods: {
+			getFriends() {
+				getFriends().then(res => {
+					if(res.success) {
+						this.friends = res.data
+					}
+				})
+			},
 			getSetting() {
 				getFriendsPageSetting().then(res => {
 					if(res.success) {
@@ -87,6 +140,13 @@
 				this.$store.commit(SET_COMMENT_QUERY_PAGE , this.page)
 				this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID , this.articleId)
 			}
+		},
+		
+		mounted() {
+			$('.modal').modal('setting', 'transition', "fade up")
+			$('.base_show_modal').click(function() {
+				$('.modal').modal('show')
+			})
 		},
 		
 		components:{
