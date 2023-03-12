@@ -48,7 +48,7 @@
 		</div>
 
 		<!--分页-->
-		<div class="base_text_center base_margin_b">
+		<div class="base_text_center base_margin_b" v-show="count > 5">
 			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="commentQueryParams.pageNo"
 				@current-change="handleCurrentChange">
 			</el-pagination>
