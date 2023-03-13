@@ -22,7 +22,7 @@
 				</div>
 			</div>
 
-			<div class="base_text_center base_margin_b">
+			<div class="base_text_center base_margin_b" v-show="totalPage > 1">
 				<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="baseQueryParams.pageNo"
 					@current-change="handleCurrentChange">
 				</el-pagination>
@@ -52,8 +52,8 @@
 		created() {
 			getPublicMoments(this.baseQueryParams).then(res => {
 				if(res.success){
-					this.moments = res.data.dataList
-					this.totalPage = res.data.totalPage
+					this.moments = res.data
+					this.totalPage = res.totalPage
 				}else {
 					this.$message.error(res.msg);
 				}
@@ -66,8 +66,8 @@
 					this.baseQueryParams.pageNo = newPage
 					getPublicMoments(this.baseQueryParams).then(res => {
 					if(res.success){
-						this.moments = res.data.dataList;
-						this.totalPage = res.data.totalPage;
+						this.moments = res.data;
+						this.totalPage = res.totalPage;
 					}else {
 						this.$message.error(res.msg);
 					}

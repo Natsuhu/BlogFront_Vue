@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<ArticleItem v-for="(article , index) in articles" :key="index" :article="article"></ArticleItem>
-		<div class="pagination base_margin_b">
+		<div class="pagination base_margin_b" v-show="totalPage > 1">
 			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="baseQueryParams.pageNo"
 				@current-change="handleCurrentChange">
 			</el-pagination>

@@ -4,7 +4,7 @@
 			<h2 class="base_text_500">此标签下的文章</h2>
 		</div>
 		<ArticleItem v-for="(article , index) in articles" :key="index" :article="article"></ArticleItem>
-		<div class="pagination base_margin_b">
+		<div class="pagination base_margin_b" v-show="totalPage > 1">
 			<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="articleQueryParams.page"
 				@current-change="handleCurrentChange">
 			</el-pagination>
@@ -56,8 +56,8 @@
 					this.articleQueryParams.page = newPage
 					getArticleByTagId(this.articleQueryParams).then(res => {
 					if(res.success){
-						this.articles = res.data.dataList;
-						this.totalPage = res.data.totalPage;
+						this.articles = res.data;
+						this.totalPage = res.totalPage;
 					}else {
 						this.$message.error(res.data.msg);
 					}
@@ -66,8 +66,8 @@
 			getArticlesByTagId(articleQueryParams) {
 				getArticlesByTagId(articleQueryParams).then(res => {
 					if(res.success){
-						this.articles = res.data.dataList;
-						this.totalPage = res.data.totalPage;
+						this.articles = res.data;
+						this.totalPage = res.totalPage;
 					}else {
 						this.$message.error(res.msg);
 					}
