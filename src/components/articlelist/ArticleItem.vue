@@ -25,8 +25,8 @@
 			</div>
 			
 			<!--文章分类-->
-			<div @click="categoryRoute(article.category.id)" class="ui large label teal base_text_point base_category">
-				<i class="small folder open icon"></i><span class="base_text_500">{{ article.category.name }}</span>
+			<div @click="categoryRoute(article.categoryId)" class="ui large label teal base_text_point base_category">
+				<i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
 			</div>
 			
 			<!--文章描述-->
@@ -59,32 +59,21 @@
 </template>
 
 <script>
-	import router from "../../router";
-	
 	export default {
 		name: 'ArticleItem',
+
 		props:{
 			article: Object
 		},
 		
-		data(){
-			return {
-				
-			}
-		},
-		
 		methods:{
 			read(id){
-				return router.push(`/articles/read/${id}`);
+				this.$router.push(`/articles/read/${id}`);
 			},
 			categoryRoute(id) {
 				this.$router.push(`/articles/category/${id}`)
 			}
 		},
-		
-		mounted() {
-			
-		}
 	}
 </script>
 

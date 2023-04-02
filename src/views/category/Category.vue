@@ -46,8 +46,8 @@
 		},
 
 		created(){
-			this.articleQueryParams.categoryId = this.categoryId
-			this.getArticlesByCategoryId(this.articleQueryParams)
+			this.articleQueryParams.categoryId = this.categoryId;
+			this.getArticlesByCategoryId(this.articleQueryParams);
 		},
 		
 		methods:{

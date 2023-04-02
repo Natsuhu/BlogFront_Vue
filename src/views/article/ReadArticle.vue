@@ -28,8 +28,8 @@
 					</div>
 					
 					<!--文章分类-->
-					<div @click="categoryRoute(article.category.id)" class="ui large label teal base_text_point base_category">
-						<i class="small folder open icon"></i><span class="base_text_500">{{ category.name }}</span>
+					<div @click="categoryRoute(article.categoryId)" class="ui large label teal base_text_point base_category">
+						<i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
 					</div>
 					
 					<div class="row"/>
@@ -77,7 +77,6 @@
 		data() {
 			return {
 				article: {},
-				category: {},
 				//是否允许评论，true为关闭评论
 				isComment: true,
 			}
@@ -89,7 +88,6 @@
 				return parseInt(this.$route.params.id)
 			}
 		},
-		
 		
 		//解决浏览器地址变化，但文章内容不会变的bug
 		beforeRouteUpdate(to, from, next) {
