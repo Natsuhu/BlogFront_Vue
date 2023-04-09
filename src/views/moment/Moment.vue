@@ -1,34 +1,46 @@
 <template>
 	<div >
-		
+		<!-- 页面标题 -->
 		<div class="ui top attached segment base_text_center">
 			<h2 class="base_text_500">我的动态</h2>
 		</div>
 		
 		<!--动态列表-->
 		<div class="ui attached segment">
-			<div class="ui card moment-card" v-for="(moment , index) in moments" :key="index">
-				<div class="content">
-					<div class="header segment moment-header">
-						<span class="moment-name">NatsuKaze</span>
-						<span class="right floated moment-time">{{moment.createTime | dateFormat('YYYY-MM-DD HH:mm:ss')}}</span>
+			<div class="ui feed"  v-for="(moment , index) in moments" :key="index">
+
+				<!-- 头像 -->
+				<div class="event">
+					<div class="label">
+						<img :src="moment.avatar">
 					</div>
-					<div class="moment-content" v-html="moment.content"></div>
-				</div>
-				<div class="extra content">
-					<a class="left floated">
-						<i class="heart icon"></i>{{ moment.like }}
-					</a>
+					<div class="content">
+
+						<!-- 作者名，发表时间 -->
+						<div class="moment_author base_text_500">{{ moment.author }}</div>
+						<div class="date"> {{ moment.createTime }} </div>
+
+						<!-- 内容 -->
+						<div class="ui card moment_card">
+							<div class="content">
+								<div class="description" v-html="moment.content"></div>
+							</div>
+							<div class="content">
+								<div><i class="like icon"></i> {{ moment.likes }} </div>
+							</div>
+						</div>
+						
+					</div>
 				</div>
 			</div>
 
+			<!-- 分页 -->
 			<div class="base_text_center base_margin_b" v-show="totalPage > 1">
 				<el-pagination background layout="prev, pager, next" :page-count="totalPage" :current-page="baseQueryParams.pageNo"
 					@current-change="handleCurrentChange">
 				</el-pagination>
 			</div>
 		</div>
-		
 	</div>
 </template>
 
@@ -79,22 +91,12 @@
 </script>
 
 <style>
-	
-	.moment-card {
+	.moment_card {
 		width: 100% !important;
 		margin-bottom: 30px !important;
 	}
-	
-	.moment-name {
-		font-size: 15px;
-		font-weight: 700 !important;
-	}
-	
-	.moment-time {
-		font-size: 13px;
-	}
-	
-	.moment-content {
-		margin-top: 18px;
+	.moment_author {
+		position: relative;
+		bottom: 10px;
 	}
 </style>
