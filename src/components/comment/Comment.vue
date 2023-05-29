@@ -19,7 +19,7 @@
 						<div class="ui blue mini button base_padding_lr_small" @click="setReply(rootComment.id , rootComment.content.nickname , rootComment.content.originId)">回复</div>
 					</div>
 					<div class="text">
-						{{ rootComment.content.content }}
+						<p style="white-space: pre-wrap;">{{ rootComment.content.content }}</p>
 					</div>
 					<CommentForm v-if="parentCommentId===rootComment.id"/>
 				</div>
@@ -37,7 +37,8 @@
 								<div class="ui blue mini button base_padding_lr_small" @click="setReply(childrenComment.id , childrenComment.content.nickname , childrenComment.content.originId)">回复</div>
 							</div>
 							<div class="text">
-								<span>@{{ childrenComment.content.replyNickname }}&nbsp;&nbsp;</span>{{ childrenComment.content.content }}
+								<span>@{{ childrenComment.content.replyNickname }}：<br></span>
+								<p style="white-space: pre-wrap;">{{ childrenComment.content.content }}</p>
 							</div>
 							<CommentForm v-if="parentCommentId===childrenComment.id"/>
 						</div>
