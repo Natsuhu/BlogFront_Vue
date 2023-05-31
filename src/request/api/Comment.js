@@ -10,20 +10,10 @@ export function saveComment(comment) {
 	})
 }
 
-export function getArticleComments(commentQueryParams) {
+export function getComments(commentQueryParams) {
 	return request({
 		method: 'get' ,
-		url: '/comments/articleComments',
-		params: {
-			...commentQueryParams
-		}
-	})
-}
-
-export function getPageComments(commentQueryParams) {
-	return request({
-		method: 'get' ,
-		url: '/comments/pageComments',
+		url: '/comments/getComments',
 		params: {
 			...commentQueryParams
 		}

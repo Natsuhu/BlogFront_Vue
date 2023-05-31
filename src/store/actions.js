@@ -1,41 +1,21 @@
-import {saveComment , getArticleComments , getPageComments} from "@/request/api/Comment";
+import {saveComment, getComments} from "@/request/api/Comment";
 import {Message, Notification} from "element-ui";
 
 export default {
 	getComments({rootState}) {
-		switch(rootState.commentQueryParams.page) {
-			case 0: 
-			getArticleComments(rootState.commentQueryParams).then(res => {
-				if(res.success) {
-					rootState.count = res.data.count
-					rootState.comments = res.data.comments
-					rootState.totalPage = res.data.totalPage
-				} else {
-					Notification({
-						title: '错误',
-						message: res.msg,
-						type: 'error'
-					})
-				}
-			});
-			break;
-			 
-			default: 
-			getPageComments(rootState.commentQueryParams).then(res => {
-				if(res.success) {
-					rootState.count = res.data.count
-					rootState.comments = res.data.comments
-					rootState.totalPage = res.data.totalPage
-				} else {
-					Notification({
-						title: '错误',
-						message: res.msg,
-						type: 'error'
-					})
-				}
-			});
-			break;
-		}
+		getComments(rootState.commentQueryParams).then(res => {
+			if(res.success) {
+				rootState.count = res.data.count
+				rootState.comments = res.data.comments
+				rootState.totalPage = res.data.totalPage
+			} else {
+				Notification({
+					title: '错误',
+					message: res.msg,
+					type: 'error'
+				})
+			}
+		});
 	},
 	submitCommentForm({rootState, dispatch}) {
 		let form = {...rootState.commentForm}

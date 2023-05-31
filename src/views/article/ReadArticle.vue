@@ -51,7 +51,7 @@
 			<ul class="list">
 				<li>本文作者：{{ article.authorName }}</li>
 				<li>发表时间：{{ article.createTime | dateFormat('YYYY-MM-DD')}}</li>
-				<li>最后修改：{{ article.updateTime | dateFormat('YYYY-MM-DD')}}</li>
+				<li>最后修改：{{ article.editTime | dateFormat('YYYY-MM-DD')}}</li>
 				<!--<div class="ui tag label teal tags m-margin-r" v-for="tag in article.tags" :key="tag.id">{{tag.tagName}}</div>-->
 			</ul>
 		</div>
@@ -132,7 +132,7 @@
 			},
 			init() {
 				this.$store.commit(SET_COMMENT_QUERY_PAGE_NO, 1)
-				this.$store.commit(SET_COMMENT_QUERY_PAGE, 0)
+				this.$store.commit(SET_COMMENT_QUERY_PAGE, 1)
 				this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, this.articleId)
 			},
 			//更新路由时，提交文章ID，以获取评论

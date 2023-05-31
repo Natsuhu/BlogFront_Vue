@@ -100,7 +100,7 @@
 				friends: [],
 				isComment: true,
 				content: "",
-				page: 1,
+				page: 2,
 				articleId: null
 			}
 		},
