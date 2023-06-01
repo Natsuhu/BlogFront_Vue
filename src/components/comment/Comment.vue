@@ -59,7 +59,7 @@
 
 <script>
 	import {mapState} from 'vuex'
-	import {SET_PARENT_COMMENT_ID , SET_REPLY_NICKNAME , SET_ORIGIN_ID , SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
+	import {SET_PARENT_COMMENT_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
 	import CommentForm from "@/components/comment/CommentForm"
 	
 	export default {
@@ -75,10 +75,8 @@
 		},
 		
 		methods: {
-			setReply(id , nickname , originId) {
+			setReply(id) {
 				this.$store.commit(SET_PARENT_COMMENT_ID , id)
-				this.$store.commit(SET_REPLY_NICKNAME , nickname)
-				this.$store.commit(SET_ORIGIN_ID , originId)
 			},
 			handleCurrentChange(newPage) {
 				this.$store.commit(SET_COMMENT_QUERY_PAGE_NO , newPage)

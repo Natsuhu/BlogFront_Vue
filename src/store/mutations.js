@@ -19,11 +19,5 @@ export default {
 	},
 	[SET_PARENT_COMMENT_ID](state , parentCommentId) {
 		state.parentCommentId = parentCommentId
-	},
-	[SET_REPLY_NICKNAME](state , replyNickname) {
-		state.replyNickname = replyNickname
-	},
-	[SET_ORIGIN_ID](state , originId) {
-		state.originId = originId
 	}
 }

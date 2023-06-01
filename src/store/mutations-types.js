@@ -6,8 +6,6 @@ export const SET_COMMENT_QUERY_PAGE = 'setCommentQueryPage'
 export const SET_COMMENT_QUERY_ARTICLE_ID = 'setCommentQueryArticleId'
 export const SET_COMMENT_QUERY_PAGE_NO = 'setCommentQueryPageNo'
 export const SET_PARENT_COMMENT_ID = 'setParentCommentId'
-export const SET_REPLY_NICKNAME = 'setReplyNickname'
-export const SET_ORIGIN_ID = 'setOriginId'
 /** 以下暂未使用 */
 export const RESET_COMMENT_FORM = 'resetCommentForm'
 export const RESTORE_COMMENT_FORM = 'restoreCommentForm'
