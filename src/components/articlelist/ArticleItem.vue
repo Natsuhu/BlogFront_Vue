@@ -36,7 +36,7 @@
 			
 			<!--首图-->
 			<div class="row">
-				<img class="ui centered rounded image" :src="article.thumbnail">
+				<img :src="article.thumbnail">
 			</div>
 			
 			<!--按钮-->
@@ -83,5 +83,10 @@
 		right: 2.2em;
 		border-top-left-radius: 0px !important;
 		border-bottom-left-radius: 0px !important;
+	}
+	.base_summary_area {
+		font-size: 17px;
+		line-height: 1.8;
+		text-align: justify;
 	}
 </style>

@@ -12,8 +12,8 @@
 		    // 音频列表
 		    audio: [
 		      {
-		        name: "温软宇宙",   // 音频名称
-		        artist: "Crazy Bucket 陈楒潼", // 音频艺术家
+		        name: "测试",   // 音频名称
+		        artist: "NatsuKaze", // 音频艺术家
 		        url: "http://127.0.0.1:8090/data/1.flac",    // 音频链接
 		        cover: "",  // 音频封面
 		        lrc: "",    // 歌词
