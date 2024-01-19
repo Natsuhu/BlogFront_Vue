@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-		<router-view class="appAnimate"></router-view>
+    <transition name="fade-transform" mode="out-in">
+		  <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -9,8 +11,8 @@
 </script>
 
 <style>
-	.appAnimate{
-		animation-name: fadeIn;
-		animation-duration: 0.5s;
-	}
+	/*.appAnimate{*/
+	/*	animation-name: fadeIn;*/
+	/*	animation-duration: 0.5s;*/
+	/*}*/
 </style>

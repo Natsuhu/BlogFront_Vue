@@ -1,10 +1,10 @@
 <template>
 	<div class="index-site">
 		<Header :categories="categories"/>
-		
+
 		<div class="ui container">
 			<div class="ui stackable grid">
-				
+
 				<!--左侧-->
 				<div class="three wide column base_mobile_hide">
 					<DataCard></DataCard>
@@ -14,27 +14,29 @@
 				<!--中间-->
 				<div class="ten wide column">
 					<keep-alive include="Home">
-						<router-view class="indexAnimate"/>
+            <transition name="fade-transform" mode="out-in">
+						  <router-view/>
+            </transition>
 					</keep-alive>
 				</div>
-				
+
 				<!--右侧-->
 				<div class="three wide column base_mobile_hide">
 					<RandomArticle :randomArticles="randomArticles"></RandomArticle>
 					<TagList :tags="tags"></TagList>
 				</div>
-				
+
 				<!-- 回到顶部 -->
 				<el-backtop></el-backtop>
-				
+
 			</div>
 		</div>
-		
+
 		<!-- APlayer -->
 		<!-- <div>
 			<MyAPlayer/>
 		</div> -->
-		
+
 		<Footer/>
 	</div>
 </template>
@@ -47,11 +49,11 @@
 	import TagList from "@/components/common/TagList"
 	import Footer from "@/components/common/Footer"
 	import MyAPlayer from "@/components/common/MyAPlayer";
-	
+
 	import {getRandomArticles} from "@/request/api/Article"
 	import {getCategories} from "@/request/api/Category"
 	import {getTags} from "@/request/api/Tag"
-	
+
 	export default {
 		data(){
 			return{
@@ -85,7 +87,7 @@
 					this.$message.error(res.msg);
 				}
 			})
-			
+
 		},
 		components:{
 			Header,
@@ -99,7 +101,7 @@
 	}
 </script>
 
-<style scoped>	
+<style scoped>
 	.index-site {
 		display: flex;
 		min-height: 100vh; /* 没有元素时，把页面撑开至100% */
@@ -111,7 +113,7 @@
 		width: 1400px;
 		margin-top: 79px;
 	}
-	
+
 	.three.wide {
 		padding: 0px !important;
 	}
@@ -119,12 +121,12 @@
 	.ten.wide {
 		padding-top: 0px !important;
 	}
-	
-	.indexAnimate {
-		animation-name: fadeIn;
-		animation-duration: 0.5s;
-	}
-	
+
+	/*.indexAnimate {*/
+	/*	animation-name: fadeIn;*/
+	/*	animation-duration: 0.5s;*/
+	/*}*/
+
 	@media screen and (max-width: 750px) {
 		.ui.grid {
 			padding-left: 0.5rem;

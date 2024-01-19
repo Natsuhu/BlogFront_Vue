@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [
 	/*{ path: '/' , component: r => require.ensure([] , () => r(require('@/views/Index')), 'Index') },*/
 	{
-		path: '/' , 
+		path: '/' ,
 		component: () => import('@/views/Index'),
 		redirect: '/home',
 		children: [
@@ -61,11 +61,12 @@ const routes = [
 			}
 		]
 	}
-	
+
 ]
 
 //创建router实例
 const router = new VueRouter({
+	scrollBehavior: () => ({ y: 0 }),
 	routes
 })
 
