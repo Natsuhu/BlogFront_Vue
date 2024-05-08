@@ -5,6 +5,16 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+//window载入APlayer，用于被meting-js封装调用
+import APlayer from 'aplayer'
+import 'aplayer/dist/APlayer.min.css'
+window.APlayer = APlayer
+//阿里icon
+import './assets/icon/iconfont.css'
+//v-viewer
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
+
 import Animated from 'animate.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -26,6 +36,7 @@ console.log(
 Vue.use(VueAxios,axios)
 Vue.use(ElementUI)
 Vue.use(Animated)
+Vue.use(Viewer)
 
 new Vue({
   router,

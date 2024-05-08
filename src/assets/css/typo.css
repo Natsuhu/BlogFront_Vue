@@ -1,13 +1,13 @@
 @charset "utf-8";
 
 .typo {
-	letter-spacing: 0.5px;
-    color: #282e35;
+    color: #24292F;
     font-size: 16px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     width: 100%;
     text-align: justify;
     word-wrap: break-word;
+    letter-spacing: 1px;
 }
 
 .typo img {
@@ -261,6 +261,10 @@
     margin-bottom: 1.2em
 }
 
+.typo p:last-child {
+    margin-bottom: 0px;
+}
+
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6 {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -274,19 +278,19 @@
     font-size: 2em;
     font-weight: 600;
     padding-bottom: .3em;
-    /*border-bottom: 1px solid hsla(210, 18%, 87%, 1);*/
+    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
 }
 
 .typo h2 {
     font-size: 1.5em;
     padding-bottom: .3em;
-    /*border-bottom: 1px solid hsla(210, 18%, 87%, 1);*/
+    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
 }
 
 .typo h3 {
     font-size: 1.25em;
     padding-bottom: .3em;
-    /*border-bottom: 1px solid hsla(210, 18%, 87%, 1);*/
+    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
 }
 
 .typo h4 {

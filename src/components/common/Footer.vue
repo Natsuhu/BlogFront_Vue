@@ -3,7 +3,7 @@
 			<div class="ui center aligned container">
 
 				<p class="m-text-thin base_text_spaced base_opacity_tiny">
-					<span style="margin-right: 10px"> Copyright © 2022 </span>
+					<span style="margin-right: 10px"> Copyright © 2021 - 2024 </span>
 					<router-link to="/" style="color:#ffe500"> NatsuKaze </router-link>
 				</p>	
 					

@@ -1,11 +1,12 @@
 <template>
 	<div class="ui segments base_box">
-		<div class="ui secondary segment">
-			<h4>公告栏</h4>
+		<div class="ui segment">
+			<span>公告栏</span>
 		</div>
-		<div class="ui teal segment">
+		<div class="ui blue segment">
 			<div class="ui items">
-				<h4>这是公告栏</h4>
+				<span>欢迎参观后台管理系统：</span>
+        <a>http://127.0.0.1:8079</a>
 			</div>
 		</div>
 	</div>

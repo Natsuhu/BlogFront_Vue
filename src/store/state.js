@@ -1,5 +1,5 @@
 export default {
-	siteInfo: '',
+	webTitleSuffix: '',
 	introduction: {
 		avatar: '',
 		name: '',
@@ -23,6 +23,8 @@ export default {
 	commentForm: {
 		content: '',
 		qq: '',
+		email: '',
+		website: ''
 	},
 	//博客文章渲染完成的标记
 	isBlogRenderComplete: false,

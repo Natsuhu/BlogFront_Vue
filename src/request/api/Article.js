@@ -27,13 +27,10 @@ export function getArchives() {
 	})
 }
 
-export function getRandomArticles(count) {
+export function getRandomArticles() {
 	return request ({
 		method: 'get',
-		url: '/articles/random',
-		params: {
-			count
-		}
+		url: '/articles/random'
 	})
 }
 

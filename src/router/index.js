@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import getPageTitle from '@/utils/get-page-title'
 
 Vue.use(VueRouter)
 
@@ -70,5 +71,15 @@ const router = new VueRouter({
 	routes
 })
 
+//挂载路由守卫
+router.beforeEach((to, from, next) => {
+	document.title = getPageTitle(to.meta.title)
+	next()
+})
+
+export function resetRouter() {
+	const newRouter = createRouter()
+	router.matcher = newRouter.matcher
+}
 
 export default router

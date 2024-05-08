@@ -18,6 +18,12 @@ service.interceptors.request.use(
 	config => {
 		NProgress.start()
 		return config
+	},
+	error => {
+		NProgress.done()
+		console.info(error)
+		Message.error(error.message)
+		return Promise.reject(error)
 	}
 )
 
@@ -26,6 +32,12 @@ service.interceptors.response.use(
 	config => {
 		NProgress.done()
 		return config.data
+	},
+	error => {
+		NProgress.done()
+		console.info(error)
+		Message.error(error.message)
+		return Promise.reject(error)
 	}
 )
 

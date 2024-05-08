@@ -1,127 +1,153 @@
 <template>
-
-	<div ref="menu" class="ui fixed inverted stackable pointing menu">
-		<div class="ui container">
-			
-			<!--logo-->
-			<router-link to="/home">
-				<h3 class="ui header item base_blue">NatsuKaze's Blog</h3>
-			</router-link>
-			
-			<!--首页-->
-			<router-link to="/home" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='home'}">
-				<i class="home icon"></i>首页
-			</router-link>
-			
-			<!--分类-->
-			<el-dropdown trigger="click" @command="categoryRoute">
-				<span class="el-dropdown-link item" :class="{'base_mobile_hide': mobileHide}">
-					<i class="list icon"></i>分类<i class="caret down icon"></i>
-				</span>
-				<el-dropdown-menu slot="dropdown">
-					<el-dropdown-item :command="category.id" v-for="(category , index) in categories" :key="index">{{ category.name }}</el-dropdown-item>
-				</el-dropdown-menu>
-			</el-dropdown>
-			
-			<!--归档-->
-			<router-link to="/archives" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='archives'}">
-				<i class="folder icon"></i>归档
-			</router-link>
-			
-			<!--动态-->
-			<router-link to="/moment" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='moment'}">
-				<i class="comment alternate outline icon"></i>动态
-			</router-link>
-			
-			<!--友情链接-->
-			<router-link to="/friends" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='friends'}">
-				<i class="users icon"></i>友链
-			</router-link>
-			
-			<!--关于本站-->
-			<router-link to="/about" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='about'}">
-				<i class="info icon"></i>关于本站
-			</router-link>
-			
-			<!--手机端菜单-->
-			<div class="ui menu black big icon button base_right_top base_mobile_show" @click="toggle">
-				<i class="sidebar icon"></i>
-			</div>
-
-		</div>
-	</div>
+  <header ref="header">
+    <div class="view">
+      <!-- 先用img标签缓存图片 -->
+      <img :src="headerImage" style="display: none">
+      <div class="bg" :style="{'background-image': 'url(' + headerImage + ')'}">
+        <div>
+          <div class="base_header_title">{{ text }}<span class="base_blink">_</span></div>
+        </div>
+        <div class="wrapper">
+          <i class="ali-iconfont icon-down" @click="scrollToMain"></i>
+        </div>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>
-	export default {
-		name: 'Header',
-		
-		props:{
-			categories: Array
-		},
-		
-		data(){
-			return {
-				mobileHide: true
-			}
-		},
-		watch: {
-			//路由改变时，收起导航栏
-			'$route.path'() {
-				this.mobileHide = true
-			}
-		},
-		mounted() {
-			//监听点击事件，收起导航菜单
-			document.addEventListener('click', (e) => {
-				//遍历冒泡
-				let flag = e.path.some(item => {
-					if (item === this.$refs.menu) return true
-				})
-				//如果导航栏是打开状态，且点击的元素不是Nav的子元素，则收起菜单
-				if (!this.mobileHide && !flag) {
-					this.mobileHide = true
-				}
-			})
-		},
-		methods:{
-			categoryRoute(id) {
-				this.$router.push(`/articles/category/${id}`)
-			},
-			toggle() {
-				this.mobileHide = !this.mobileHide
-			}
-		}
-	}
+import {mapState} from 'vuex'
+
+export default {
+  name: "Header",
+  props: {
+    headerTitle: String,
+    headerImage: String
+  },
+  data() {
+    return {
+      index: 0,
+      text: ''
+    }
+  },
+  computed: {
+    ...mapState(['clientSize'])
+  },
+
+  watch: {
+    'clientSize.clientHeight'() {
+      this.setHeaderHeight()
+    }
+  },
+
+  mounted() {
+    //设置header高度
+    this.setHeaderHeight()
+    //打字动效
+    let count = 0
+    const interval =setInterval(() => {
+      this.autoTyping()
+      count++
+      if (count > this.text.length) {
+        clearInterval(interval)
+      }
+    }, 300)
+  },
+
+  methods: {
+    //根据可视窗口高度，动态改变首图大小
+    setHeaderHeight() {
+      this.$refs.header.style.height = this.clientSize.clientHeight + 'px'
+    },
+    //平滑滚动至正文部分
+    scrollToMain() {
+      window.scrollTo({top: this.clientSize.clientHeight, behavior: 'smooth'})
+    },
+    //打字效果
+    autoTyping() {
+      this.index++
+      this.text = this.headerTitle.slice(0, this.index)
+    }
+  }
+}
 </script>
 
 <style scoped>
-	.container {
-		width: 1400px !important;
-		margin-left: auto !important;
-		margin-right: auto !important;
-	}
-	
-	.el-dropdown-link {
-		outline-style: none !important;
-		outline-color: unset !important;
-		height: 100%;
-		cursor: pointer;
-	}
 
-	.el-dropdown-menu {
-		margin: 7px 0 0 0 !important;
-		padding: 0 !important;
-		border: 0 !important;
-		background: #1b1c1d !important;
-	}
+header {
+  --percentage: 0.5;
+  user-select: none;
+}
 
-	.el-dropdown-menu__item {
-		padding: 0 15px !important;
-		color: rgba(255, 255, 255, .9) !important;
-	}
+.view {
+  width: 100%;
+  height: 100%;
+}
 
-	.el-dropdown-menu__item:hover {
-		background: rgba(255, 255, 255, .08) !important;
-	}
+.bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+}
+
+.base_header_title {
+  color: white;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  font-weight: 300;
+
+  position: relative;
+  bottom: 2em;
+}
+
+.base_blink {
+  animation: blink 1s infinite;
+}
+
+/* 闪烁效果 */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.wrapper {
+  position: absolute;
+  bottom: 150px;
+  width: 100px;
+  margin: auto;
+  font-size: 26px;
+  z-index: 10;
+}
+
+.wrapper i {
+  color: white;
+  font-size: 60px;
+  /*opacity: 0.5;*/
+  cursor: pointer;
+  position: absolute;
+  top: 55px;
+  left: 20px;
+  animation: opener .5s ease-in-out alternate infinite;
+  transition: opacity .2s ease-in-out, transform .5s ease-in-out .2s;
+}
+
+@keyframes opener {
+  100% {
+    top: 65px
+  }
+}
+
+/*.wrapper i:hover {*/
+/*  opacity: 1;*/
+/*}*/
+
 </style>

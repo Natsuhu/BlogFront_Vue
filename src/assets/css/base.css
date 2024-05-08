@@ -1,11 +1,12 @@
 @import './transition.scss';
+
 html,
 body,
 #app {
-	height: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #efefef;
+    /*background-color: #efefef;*/
     background-attachment: fixed;
     background-size: cover;
     background-position: left top;
@@ -24,18 +25,21 @@ body::-webkit-scrollbar {
     width: 8px;
     height: 5px;
 }
+
 /*滑块*/
 body::-webkit-scrollbar-thumb {
     -webkit-box-shadow: inset 0 0 6px #48dbfb;
     box-shadow: inset 0 0 6px #48dbfb;
     background-color: #0E6EB8;
 }
+
 /*外层轨道*/
 body::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px transparent;
     box-shadow: inset 0 0 6px transparent;
     background-color: transparent;
 }
+
 /*外层轨道*/
 body::-webkit-scrollbar-track-piece {
     background-color: transparent;
@@ -68,90 +72,97 @@ footer {
 }
 
 
-
 /*----margin----*/
 .base_center {
-	margin: auto !important;
+    margin: auto !important;
 }
 
 .base_margin_tb_no {
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .base_margin_tb_mini {
-	margin-top: 0.2em !important;
-	margin-bottom: 0.2em !important;
+    margin-top: 0.2em !important;
+    margin-bottom: 0.2em !important;
 }
 
 .base_margin_tb_small {
-	margin-top: 0.5em !important;
-	margin-bottom: 0.5em !important;
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
 }
 
 .base_margin_tb {
-	margin-top: 1em !important;
-	margin-bottom: 1em !important;
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
 }
 
 .base_margin_tb_large {
-	margin-top: 2em !important;
-	margin-bottom: 2em !important;
+    margin-top: 2em !important;
+    margin-bottom: 2em !important;
 }
 
 .base_margin_tb_big {
-	margin-top: 3em !important;
-	margin-bottom: 3em !important;
+    margin-top: 3em !important;
+    margin-bottom: 3em !important;
 }
 
 .base_margin_lr_no {
-	margin-right: 0 !important;
-	margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }
 
 .base_margin_lr_mini {
-	margin-right: 0.2em !important;
-	margin-left: 0.2em !important;
+    margin-right: 0.2em !important;
+    margin-left: 0.2em !important;
 }
 
 .base_margin_lr_small {
-	margin-right: 0.5em !important;
-	margin-left: 0.5em !important;
+    margin-right: 0.5em !important;
+    margin-left: 0.5em !important;
 }
 
 .base_margin_lr {
-	margin-right: 1em !important;
-	margin-left: 1em !important;
+    margin-right: 1em !important;
+    margin-left: 1em !important;
 }
 
 .base_margin_lr_large {
-	margin-right: 2em !important;
-	margin-left: 2em !important;
+    margin-right: 2em !important;
+    margin-left: 2em !important;
 }
 
 .base_margin_lr_big {
-	margin-right: 3em !important;
-	margin-left: 3em !important;
+    margin-right: 3em !important;
+    margin-left: 3em !important;
 }
 
 .base_margin_b {
-	margin-bottom: 1em !important;
+    margin-bottom: 1em !important;
+}
+
+.base_margin_b_small {
+    margin-bottom: 0.5em !important;
 }
 
 .base_margin_b_mini {
-	margin-bottom: 0.2em !important;
+    margin-bottom: 0.2em !important;
 }
 
 .base_margin_b_large {
-	margin-bottom: 2em !important;
+    margin-bottom: 2em !important;
 }
 
 .base_margin_t_large {
-	margin-top: 2em !important;
+    margin-top: 2em !important;
 }
 
 .base_margin_r {
-	margin-right: 1em !important;
+    margin-right: 1em !important;
+}
+
+.base_margin_r_small {
+    margin-right: 0.5em !important;
 }
 
 .base_right_top {
@@ -162,71 +173,71 @@ footer {
 
 /*----padding----*/
 .base_padding_tb_no {
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .base_padding_tb_mini {
-	padding-top: 0.2em !important;
-	padding-bottom: 0.2em !important;
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
 }
 
 .base_padding_tb_small {
-	padding-top: 0.5em !important;
-	padding-bottom: 0.5em !important;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
 }
 
 .base_padding_tb {
-	padding-top: 1em !important;
-	padding-bottom: 1em !important;
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
 }
 
 .base_padding_tb_large {
-	padding-top: 2em !important;
-	padding-bottom: 2em !important;
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
 }
 
 .base_padding_tb_big {
-	padding-top: 3em !important;
-	padding-bottom: 3em !important;
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
 }
 
 .base_padding_lr_no {
-	padding-right: 0 !important;
-	padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 
 .base_padding_lr_mini {
-	padding-right: 0.2em !important;
-	padding-left: 0.2em !important;
+    padding-right: 0.2em !important;
+    padding-left: 0.2em !important;
 }
 
 .base_padding_lr_small {
-	padding-right: 0.5em !important;
-	padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+    padding-left: 0.5em !important;
 }
 
 .base_padding_lr {
-	padding-right: 1em !important;
-	padding-left: 1em !important;
+    padding-right: 1em !important;
+    padding-left: 1em !important;
 }
 
 .base_padding_lr_large {
-	padding-right: 2em !important;
-	padding-left: 2em !important;
+    padding-right: 2em !important;
+    padding-left: 2em !important;
 }
 
 .base_padding_lr_big {
-	padding-right: 3em !important;
-	padding-left: 3em !important;
+    padding-right: 3em !important;
+    padding-left: 3em !important;
 }
 
 .base_padding_b {
-	padding-bottom: 1em !important;
+    padding-bottom: 1em !important;
 }
 
 .base_padding_r {
-	padding-right: 1em !important;
+    padding-right: 1em !important;
 }
 
 /*------shadow------*/
@@ -257,11 +268,11 @@ footer {
 }
 
 .base_text_left {
-	text-align: left !important;
+    text-align: left !important;
 }
 
 .base_text_center {
-	text-align: center !important;
+    text-align: center !important;
 }
 
 .base_text_heimu {
@@ -288,11 +299,11 @@ footer {
 }
 
 .base_text_noselect {
-	user-select: none !important;
+    user-select: none !important;
 }
 
 .base_text_point {
-	cursor: pointer !important;
+    cursor: pointer !important;
 }
 
 
@@ -318,9 +329,9 @@ footer {
     box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2), 0 2px 4px 0px rgba(0, 0, 0, 0.2), 0 4px 8px 0px rgba(0, 0, 0, 0.2), 0 8px 16px 0px rgba(0, 0, 0, 0.2) !important;
 }
 
-.base_box:active {
-    box-shadow: 0 1px 2px 0px rgba(72, 219, 251, 0.3), 0 2px 4px 0px rgba(72, 219, 251, 0.3), 0 4px 8px 0px rgba(72, 219, 251, 0.3), 0 8px 16px 0px rgba(72, 219, 251, 0.3) !important;
-}
+/*.base_box:active {*/
+/*    box-shadow: 0 1px 2px 0px rgba(72, 219, 251, 0.3), 0 2px 4px 0px rgba(72, 219, 251, 0.3), 0 4px 8px 0px rgba(72, 219, 251, 0.3), 0 8px 16px 0px rgba(72, 219, 251, 0.3) !important;*/
+/*}*/
 
 @media (max-width: 768px) {
     .base_box {
@@ -347,7 +358,7 @@ footer {
 
 
 .base_datetime_color {
-    color: #008080 !important;
+    color: #409EFF !important;
 }
 
 .base_datetime_color * {
@@ -355,11 +366,11 @@ footer {
 }
 
 .base_datetime_color i {
-    margin-right: 3px !important;
+    margin-right: 1px !important;
 }
 
 .base_views_color {
-    color: #ff3f1f !important;
+    color: #F56C6C !important;
 }
 
 .base_views_color * {
@@ -367,7 +378,7 @@ footer {
 }
 
 .base_views_color i {
-    margin-right: 3px !important;
+    margin-right: 1px !important;
 }
 
 .base_common_black {
@@ -383,7 +394,7 @@ footer {
 }
 
 .base_common_black i {
-    margin-right: 3px !important;
+    margin-right: 1px !important;
 }
 
 .base_big_fontsize p, .base_big_fontsize ul, .base_big_fontsize ol {

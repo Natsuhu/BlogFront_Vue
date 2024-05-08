@@ -9,3 +9,10 @@ export function getPublicMoments(baseQueryParams) {
 		}
 	})
 }
+
+export function likeMoment(id) {
+	return request({
+		method: 'get',
+		url: `/moments/like/${id}`,
+	})
+}

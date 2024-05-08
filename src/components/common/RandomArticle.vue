@@ -1,11 +1,11 @@
 <template>
 	<div class="ui segments base_box">
-		<div class="ui secondary segment">
-			<h4><i class="bookmark icon"></i>随机文章</h4>
+		<div class="ui segment">
+			<span class="base_text_500"><i class="bookmark icon"></i>随机文章</span>
 		</div>
-		<div class="ui teal segment">
+		<div class="ui blue segment">
 			<div class="ui divided items">
-				<div class="m-item base_margin_b" v-for="(article , index) in randomArticles" :key="index" @click.prevent="read(article.id)">
+				<div class="base_item base_margin_b" v-for="(article , index) in randomArticles" :key="index" @click.prevent="read(article.id)">
 					<div class="img" :style="{'background-image':'url(' + article.thumbnail + ')'}"></div>
 					<div class="info">
 						<div>{{ article.createTime | dateFormat('YYYY-MM-DD')}}</div>
@@ -40,7 +40,7 @@
 
 <style scoped>
 	
-	.m-item {
+	.base_item {
 		height: 7rem;
 		position: relative;
 		overflow: hidden;

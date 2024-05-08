@@ -13,3 +13,13 @@ export function getFriends() {
 		url: '/friends'
 	})
 }
+
+export function  clickFriend(nickname) {
+	return request({
+		method: 'get',
+		url: '/friends/clickFriend',
+		params: {
+			nickname: nickname
+		}
+	})
+}
