@@ -45,6 +45,11 @@ body::-webkit-scrollbar-track-piece {
     background-color: transparent;
 }
 
+#app {
+    position: relative;
+    z-index: 1;
+}
+
 #app ::-webkit-scrollbar-track {
     background: transparent;
 }
@@ -441,5 +446,25 @@ footer {
 @keyframes sun {
     100% {
         background-position: -400% 0;
+    }
+}
+
+.base_background_image_div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    animation: fadeIn 1s ease-in-out;
+    background-size: cover;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
