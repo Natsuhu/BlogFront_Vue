@@ -102,16 +102,15 @@ export default {
       if (this.bodyImage === null) {
         document.body.style.backgroundColor = '#efefef';
       } else {
-        //先创建一个背景图容器
-        const backgroundImageDiv = document.createElement('div');
-        backgroundImageDiv.classList.add('base_background_image_div');
-        document.body.appendChild(backgroundImageDiv);
         //使用img预加载图片
         const img = new Image();
         img.src = this.bodyImage;
         img.onload = () => {
           //图片加载完成才显示
+          const backgroundImageDiv = document.createElement('div');
           backgroundImageDiv.style.backgroundImage = `url(${this.bodyImage})`;
+          backgroundImageDiv.classList.add('base_background_image_div');
+          document.body.appendChild(backgroundImageDiv);
         };
       }
     }, 1000);
