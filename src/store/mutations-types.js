@@ -7,6 +7,7 @@ export const SET_COMMENT_QUERY_ARTICLE_ID = 'setCommentQueryArticleId'
 export const SET_COMMENT_QUERY_PAGE_NO = 'setCommentQueryPageNo'
 export const SET_PARENT_COMMENT_ID = 'setParentCommentId'
 export const SET_FOCUS_MODE = 'setFocusMode'
+export const SET_ADMIN_COMMENT_LABEL='setAdminCommentLabel'
 export const SAVE_CLIENT_SIZE = 'saveClientSize'
 /** 以下暂未使用 */
 export const RESET_COMMENT_FORM = 'resetCommentForm'

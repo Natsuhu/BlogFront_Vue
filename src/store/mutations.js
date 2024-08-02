@@ -5,6 +5,7 @@ import {
 	SET_PARENT_COMMENT_ID,
 	SET_WEB_TITLE_SUFFIX,
 	SET_FOCUS_MODE,
+	SET_ADMIN_COMMENT_LABEL,
 	SAVE_CLIENT_SIZE
 } from "./mutations-types";
 
@@ -30,4 +31,7 @@ export default {
 	[SET_FOCUS_MODE](state, focusMode) {
 		state.focusMode = focusMode
 	},
+	[SET_ADMIN_COMMENT_LABEL](state, adminCommentLabel) {
+		state.adminCommentLabel = adminCommentLabel
+	}
 }

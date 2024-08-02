@@ -20,6 +20,9 @@ export default {
 	totalPage: 0,
 	//父评论ID
 	parentCommentId: -1,
+	//博主评论标识
+	adminCommentLabel: '',
+	//评论表单
 	commentForm: {
 		content: '',
 		qq: '',

@@ -58,7 +58,7 @@ import {getRandomArticles} from "@/request/api/Article"
 import {getCategories} from "@/request/api/Category"
 import {getTags} from "@/request/api/Tag"
 
-import {SAVE_CLIENT_SIZE, SET_WEB_TITLE_SUFFIX} from "@/store/mutations-types";
+import {SAVE_CLIENT_SIZE, SET_WEB_TITLE_SUFFIX, SET_ADMIN_COMMENT_LABEL} from "@/store/mutations-types";
 import {mapState} from "vuex";
 
 export default {
@@ -139,6 +139,7 @@ export default {
         this.cardInfo.email = res.data.email;
         //这里获取网页标题后缀立刻设置一下标题，依旧是因为同步问题
         this.$store.commit(SET_WEB_TITLE_SUFFIX, res.data.webTitleSuffix);
+        this.$store.commit(SET_ADMIN_COMMENT_LABEL, res.data.adminCommentLabel);
         document.title = this.$route.meta.title + res.data.webTitleSuffix
       } else {
         this.$message.error(res.msg);

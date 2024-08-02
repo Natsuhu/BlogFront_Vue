@@ -12,6 +12,7 @@
         </a>
         <div class="content base_margin_b">
           <span class="author">{{ rootComment.content.nickname }}</span>
+          <div class="ui black mini left pointing label" v-if="rootComment.content.isAdminComment">{{ $store.state.adminCommentLabel }}</div>
           <div class="metadata">
             <span class="date">{{ rootComment.content.createTime | dateFormat('YYYY-MM-DD HH:mm') }}</span>
             <span class="base_replay base_text_point"
@@ -32,6 +33,7 @@
             </a>
             <div class="content">
               <span class="author">{{ childrenComment.content.nickname }}</span>
+              <div class="ui black mini left pointing label" v-if="childrenComment.content.isAdminComment">{{ $store.state.adminCommentLabel }}</div>
               <div class="metadata">
                 <span class="date">{{ childrenComment.content.createTime | dateFormat('YYYY-MM-DD HH:mm') }}</span>
                 <span class="base_replay base_text_point"
