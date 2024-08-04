@@ -65,9 +65,9 @@ export default {
   data() {
     return {
       blogName: '',
-      headerTitle: '',
-      headerImage: '',
-      bodyImage: '',
+      headerTitle: null,
+      headerImage: null,
+      bodyImage: null,
       cardInfo: {
         cardAvatar: '',
         cardName: '',
@@ -83,7 +83,11 @@ export default {
       categories: []
     }
   },
-  mounted() {
+  async mounted() {
+    //同步，必须收集齐配置项才加载后续请求
+    const res = await getIndexSetting()
+    //TODO 判断如果超时或出错，弹框提醒博客后端程序挂掉了
+    await this.assignment(res)
     //保存可视窗口大小
     this.$store.commit(SAVE_CLIENT_SIZE, {
       clientHeight: document.body.clientHeight,
@@ -96,30 +100,60 @@ export default {
         clientWidth: document.body.clientWidth
       })
     }
-    //延时一秒后设置博客背景，否则拿不到bodyImage的值。
-    //因为created里面的请求是异步的，mounted并不会等待请求结束才开始。
-    setTimeout(e => {
-      if (this.bodyImage === null) {
-        document.body.style.backgroundColor = '#efefef';
+    //设置博客背景
+    document.body.style.backgroundColor = '#efefef';
+    if (this.bodyImage != null) {
+      //使用img预加载图片
+      const img = new Image();
+      img.src = this.bodyImage;
+      img.onload = () => {
+        //图片加载完成才显示
+        const backgroundImageDiv = document.createElement('div');
+        backgroundImageDiv.style.backgroundImage = `url(${this.bodyImage})`;
+        backgroundImageDiv.classList.add('base_background_image_div');
+        backgroundImageDiv.id = "bgDiv";
+        //将这个div添加到vue节点中
+        //this.$el.appendChild(backgroundImageDiv);
+        document.body.appendChild(backgroundImageDiv);
+      };
+    }
+  },
+  created() {
+    getCategories().then(res => {
+      //res.data就是后台返回的Result
+      //concat是数组的一个方法，使用此方法后，赋值的对象只能是数组
+      if (res.success) {
+        this.categories = res.data;
       } else {
-        //使用img预加载图片
-        const img = new Image();
-        img.src = this.bodyImage;
-        img.onload = () => {
-          //图片加载完成才显示
-          const backgroundImageDiv = document.createElement('div');
-          backgroundImageDiv.style.backgroundImage = `url(${this.bodyImage})`;
-          backgroundImageDiv.classList.add('base_background_image_div');
-          document.body.appendChild(backgroundImageDiv);
-        };
+        this.$message.error(res.msg);
       }
-    }, 1000);
+    })
+    getTags().then(res => {
+      if (res.success) {
+        this.tags = this.tags.concat(res.data);
+      } else {
+        this.$message.error(res.msg);
+      }
+    })
+    getRandomArticles().then(res => {
+      if (res.success) {
+        this.randomArticles = res.data;
+      } else {
+        this.$message.error(res.msg);
+      }
+    })
+  },
+  beforeDestroy() {
+    const bgDiv = document.getElementById("bgDiv");
+    if (bgDiv != null) {
+      bgDiv.parentNode.removeChild(bgDiv);
+    }
   },
   computed: {
     ...mapState(['focusMode'])
   },
-  created() {
-    getIndexSetting().then(res => {
+  methods: {
+    assignment(res) {
       if (res.success) {
         //博客名称
         this.blogName = res.data.blogName;
@@ -144,30 +178,7 @@ export default {
       } else {
         this.$message.error(res.msg);
       }
-    })
-    getCategories().then(res => {
-      //res.data就是后台返回的Result
-      //concat是数组的一个方法，使用此方法后，赋值的对象只能是数组
-      if (res.success) {
-        this.categories = res.data;
-      } else {
-        this.$message.error(res.msg);
-      }
-    })
-    getTags().then(res => {
-      if (res.success) {
-        this.tags = this.tags.concat(res.data);
-      } else {
-        this.$message.error(res.msg);
-      }
-    })
-    getRandomArticles().then(res => {
-      if (res.success) {
-        this.randomArticles = res.data;
-      } else {
-        this.$message.error(res.msg);
-      }
-    })
+    },
   },
   components: {
     Nav,

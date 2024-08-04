@@ -1,9 +1,12 @@
 import request from "@/request/BaseRequest"
 
-export function saveComment(comment) {
+export function saveComment(token, comment) {
 	return request({
 		method: 'post',
 		url: '/comments/save',
+		headers: {
+			Authorization: token,
+		},
 		data: {
 			...comment
 		}

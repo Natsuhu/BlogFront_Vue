@@ -24,7 +24,8 @@ export default {
 		form.parentCommentId = rootState.parentCommentId
 		form.replyNickname = rootState.replyNickname
 		form.originId = rootState.originId
-		saveComment(form).then(res => {
+		const token = window.localStorage.getItem('token')
+		saveComment(token, form).then(res => {
 			if (res.success) {
 				Notification({
 					title: '评论成功',

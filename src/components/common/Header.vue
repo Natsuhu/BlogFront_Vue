@@ -45,7 +45,7 @@ export default {
     this.setHeaderHeight()
     //打字动效
     let count = 0
-    const interval =setInterval(() => {
+    const interval = setInterval(() => {
       this.autoTyping()
       count++
       if (count > this.text.length) {
@@ -114,9 +114,15 @@ header {
 
 /* 闪烁效果 */
 @keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .wrapper {

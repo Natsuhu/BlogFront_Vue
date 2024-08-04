@@ -3,8 +3,10 @@
 			<div class="ui center aligned container">
 
 				<p class="m-text-thin base_text_spaced base_opacity_tiny">
-					<span style="margin-right: 10px"> Copyright © 2021 - 2024 </span>
-					<router-link to="/" style="color:#ffe500"> NatsuKaze </router-link>
+					<span class="base_margin_r_small"> Copyright © 2021 - 2024 </span>
+					<router-link to="/" class="base_margin_r_small" style="color:#ffe500">NatsuKaze</router-link>
+          <span class="base_margin_r_small">|</span>
+          <a rel="external nofollow noopener" href="https://beian.miit.gov.cn/" target="_blank" style="color:#ffe500">鄂ICP备2024058994号</a>
 				</p>	
 					
 				<div class="github-badge">
