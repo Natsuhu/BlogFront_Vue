@@ -39,7 +39,7 @@
       <MyAPlayer/>
     </div> -->
 
-    <Footer/>
+    <Footer :copyright="copyright" :icpInfo="icpInfo" :badgeList="badgeList"/>
   </div>
 </template>
 
@@ -78,6 +78,9 @@ export default {
         netease: null,
         email: null
       },
+      copyright: {},
+      icpInfo: '',
+      badgeList: [],
       randomArticles: [],
       tags: [],
       categories: []
@@ -171,6 +174,10 @@ export default {
         this.cardInfo.bilibili = res.data.bilibili;
         this.cardInfo.netease = res.data.netease;
         this.cardInfo.email = res.data.email;
+        //页脚信息
+        this.copyright = res.data.copyright;
+        this.icpInfo = res.data.icpInfo;
+        this.badgeList = res.data.badgeList;
         //这里获取网页标题后缀立刻设置一下标题，依旧是因为同步问题
         this.$store.commit(SET_WEB_TITLE_SUFFIX, res.data.webTitleSuffix);
         this.$store.commit(SET_ADMIN_COMMENT_LABEL, res.data.adminCommentLabel);
