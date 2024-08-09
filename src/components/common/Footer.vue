@@ -12,7 +12,7 @@
       <div class="github-badge" v-for="(badge, index) in badgeList" :key="index">
         <a rel="external nofollow noopener" :href="badge.url" target="_blank" :title="badge.title">
           <span class="badge-subject">{{ badge.subject }}</span>
-          <span class="badge-value" :class="`bg-${badge.color}`">{{ badge.value }}</span>
+          <span class="badge-value" :style="`background-color: ${badge.color}`">{{ badge.value }}</span>
         </a>
       </div>
     </div>
