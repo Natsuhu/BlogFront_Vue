@@ -12,7 +12,7 @@
         <div class="ui stackable grid">
           <!--左侧-->
           <div class="three wide column base_mobile_hide">
-            <DataCard :cardInfo="cardInfo" v-show="!this.focusMode"/>
+            <DataCard :cardInfo="cardInfo" :cardCustom="cardCustom" v-show="!this.focusMode"/>
             <Notice v-if="false"/>
           </div>
           <!--中间-->
@@ -78,6 +78,7 @@ export default {
         netease: null,
         email: null
       },
+      cardCustom: [],
       copyright: {},
       icpInfo: '',
       badgeList: [],
@@ -174,6 +175,7 @@ export default {
         this.cardInfo.bilibili = res.data.bilibili;
         this.cardInfo.netease = res.data.netease;
         this.cardInfo.email = res.data.email;
+        this.cardCustom = res.data.cardCustom;
         //页脚信息
         this.copyright = res.data.copyright;
         this.icpInfo = res.data.icpInfo;

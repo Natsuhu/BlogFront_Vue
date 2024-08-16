@@ -51,20 +51,17 @@
       </div>
 
 			<!--下拉框-->
-<!--			<div class="ui styled accordion">-->
-<!--			  <div class="title">-->
-<!--			    <i class="dropdown icon"></i>-->
-<!--			    联系我-->
-<!--			  </div>-->
-<!--			  <div class="title">-->
-<!--			    <i class="dropdown icon"></i>-->
-<!--			    数据统计-->
-<!--			  </div>-->
-<!--			  <div class="content">-->
-<!--			    <p>（接口没做完）</p>-->
-<!--			  </div>-->
-<!--			</div>-->
-
+			<div class="ui styled fluid accordion">
+        <div v-for="(item , index) in cardCustom" :key="index">
+          <div class="title">
+            <i class="dropdown icon"></i>
+            {{ item.title }}
+          </div>
+          <div class="content">
+            {{ item.content }}
+          </div>
+        </div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -75,18 +72,22 @@
 	export default {
 		name: 'DataCard',
 		props: {
-      cardInfo: Object
+      cardInfo: Object,
+      cardCustom: Array
 		},
 		mounted() {
-			// $(".ui.accordion").accordion({
-			// 	exclusive : false
-			// })
+			$(".ui.accordion").accordion({
+				exclusive : false
+			})
 		}
 	}
 </script>
 
 <style scoped>
 .ui.card {
+  box-shadow: unset !important;
+}
+.ui.accordion {
   box-shadow: unset !important;
 }
 </style>
