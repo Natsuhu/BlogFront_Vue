@@ -12,17 +12,25 @@
       <!--文章简要信息-->
       <div class="row base_padding_tb_small">
         <div class="ui horizontal list base_center base_text_noselect">
-          <div class="item base_datetime_color">
-            <i class="small calendar icon"></i><span>{{ article.createTime | dateFormat('YYYY-MM-DD') }}</span>
+          <div class="item">
+            <div class="ui blue label">
+              <i class="small calendar icon"></i>{{ article.createTime | dateFormat('YYYY-MM-DD') }}
+            </div>
           </div>
-          <div class="item base_views_color">
-            <i class="small eye icon"></i><span>{{ article.views }}</span>
+          <div class="item">
+            <div class="ui orange label">
+              <i class="small eye icon"></i>{{ article.views }}
+            </div>
           </div>
-          <div class="item base_common_black">
-            <i class="small pencil icon"></i><span>字数≈{{ article.words }}字</span>
+          <div class="item">
+            <div class="ui label">
+              <i class="small pencil icon"></i>字数≈{{ article.words }}字
+            </div>
           </div>
-          <div class="item base_common_black">
-            <i class="small clock icon"></i><span>阅读时长≈{{ article.readTime }}分</span>
+          <div class="item">
+            <div class="ui label">
+              <i class="small clock icon"></i>阅读时长≈{{ article.readTime }}分
+            </div>
           </div>
         </div>
       </div>
