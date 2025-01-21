@@ -47,7 +47,8 @@
             <i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
           </div>
           <!--文章Markdown正文-->
-          <div class="typo" v-viewer :class="{'base_big_fontsize':bigFontSize}" v-html="article.content"></div>
+<!--          <div class="typo" v-viewer :class="{'base_big_fontsize':bigFontSize}" v-html="article.content"></div>-->
+          <articleContent v-viewer :article-content="article.content" :bigFontSize="bigFontSize" />
           <!--点赞/打赏
           <div class="ui large buttons m-center">
               <div class="ui button teal">点赞</div>
@@ -80,6 +81,7 @@ import {getReadArticleById} from "@/request/api/Article"
 import {SET_COMMENT_QUERY_PAGE, SET_COMMENT_QUERY_ARTICLE_ID, SET_COMMENT_QUERY_PAGE_NO, SET_FOCUS_MODE} from "@/store/mutations-types"
 import {mapState} from 'vuex'
 import Prism from 'prismjs'
+import Vue from "vue";
 
 export default {
   name: "ReadArticle",
@@ -160,7 +162,23 @@ export default {
   },
 
   components: {
-    Comment
+    Comment,
+    'articleContent': {
+      props: {
+        articleContent: {
+          type: String
+        },
+        bigFontSize: {
+          type: Boolean
+        }
+      },
+      render(h) {
+        const com = Vue.extend({
+          template: `<div class="typo" :class="{'base_big_fontsize':${this.bigFontSize}}">${this.articleContent}</div>`
+        })
+        return h(com, {})
+      }
+    }
   }
 }
 </script>

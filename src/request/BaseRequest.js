@@ -17,6 +17,11 @@ service.defaults.timeout =  window.env.AXIOS_TIMEOUT
 service.interceptors.request.use(
 	config => {
 		NProgress.start()
+		const identification = window.localStorage.getItem('identification')
+		//identification存在，且是基于API_BASE_URL的请求
+		if (identification && !(config.url.startsWith('http://') || config.url.startsWith('https://'))) {
+			config.headers.Identification = identification
+		}
 		return config
 	},
 	error => {
@@ -31,6 +36,11 @@ service.interceptors.request.use(
 service.interceptors.response.use(
 	config => {
 		NProgress.done()
+		const identification = config.headers.identification
+		if (identification) {
+			//保存身份标识到localStorage
+			window.localStorage.setItem('identification', identification)
+		}
 		return config.data
 	},
 	error => {
