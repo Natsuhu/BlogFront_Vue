@@ -1,7 +1,7 @@
 <template>
 	<div class="ui segments base_box">
 		<div class="ui segment">
-			<span class="base_text_500"><i class="bookmark icon"></i>随机文章</span>
+			<span class="base_text_500">📖 随机推荐</span>
 		</div>
 		<div class="ui blue segment">
 			<div class="ui divided items">

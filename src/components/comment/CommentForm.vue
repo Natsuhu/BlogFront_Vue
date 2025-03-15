@@ -19,12 +19,13 @@
       </el-form-item>
       <el-form-item prop="website">
         <el-popover ref="websitePopover" placement="bottom" trigger="focus" content="可以让我参观一下吗？🍔"></el-popover>
-        <el-input v-model="commentForm.website" placeholder="https://（可选）" :validate-event="false" v-popover:websitePopover>
+        <el-input v-model="commentForm.website" placeholder="https://（可选）" :validate-event="false"
+                  v-popover:websitePopover>
           <i slot="prefix" class="el-input__icon el-icon-map-location"></i>
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="medium" v-throttle="[postForm,`click`,3000]">发表评论</el-button>
+        <el-button type="primary" size="small" v-throttle="[postForm,`click`,3000]">发表评论</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -76,7 +77,7 @@ export default {
 
 <style>
 .form {
-  background: #fff;
+  background-color: rgba(255, 255, 255, 0);
   position: relative;
 }
 
@@ -100,9 +101,14 @@ export default {
 }
 
 .el-form textarea, .el-form input {
+  border: 1px solid rgba(34, 36, 38, .15);
+  background-color: rgba(255, 255, 255, 0);
+  font-family: "LXGWWenKai", sans-serif !important;
   color: black;
 }
-
+.el-textarea .el-input__count {
+  background-color: unset;
+}
 .el-form .el-form-item__label {
   padding-right: 3px;
 }

@@ -9,36 +9,12 @@
     <!--  主容器  -->
     <div class="base_main">
       <div class="ui container">
-        <div class="ui stackable grid">
-          <!--左侧-->
-          <div class="three wide column base_mobile_hide">
-            <DataCard :cardInfo="cardInfo" :cardCustom="cardCustom" v-show="!this.focusMode"/>
-            <Notice v-if="false"/>
-          </div>
-          <!--中间-->
-          <div class="ten wide column">
-            <keep-alive include="Home">
-              <!-- <transition name="fade-transform" mode="out-in"> -->
-              <router-view/>
-              <!-- </transition> -->
-            </keep-alive>
-          </div>
-          <!--右侧-->
-          <div class="three wide column base_mobile_hide">
-            <RandomArticle :randomArticles="randomArticles" v-show="!this.focusMode"/>
-            <TagList :tags="tags" v-show="!this.focusMode"/>
-          </div>
-          <!-- 回到顶部 -->
-          <el-backtop></el-backtop>
-        </div>
+        <keep-alive include="Home">
+          <router-view class="base_animate"/>
+        </keep-alive>
+        <el-backtop></el-backtop>
       </div>
     </div>
-
-    <!-- APlayer -->
-    <!-- <div>
-      <MyAPlayer/>
-    </div> -->
-
     <Footer :copyright="copyright" :icpInfo="icpInfo" :badgeList="badgeList"/>
   </div>
 </template>
@@ -46,20 +22,13 @@
 <script>
 import Header from "@/components/common/Header"
 import Nav from "@/components/common/Nav"
-import DataCard from "@/components/common/DataCard"
-import Notice from "@/components/common/Notice"
-import RandomArticle from "@/components/common/RandomArticle"
-import TagList from "@/components/common/TagList"
 import Footer from "@/components/common/Footer"
 import MyAPlayer from "@/components/common/MyAPlayer";
 
 import {getIndexSetting} from "@/request/api/Index";
-import {getRandomArticles} from "@/request/api/Article"
 import {getCategories} from "@/request/api/Category"
-import {getTags} from "@/request/api/Tag"
 
 import {SAVE_CLIENT_SIZE, SET_WEB_TITLE_SUFFIX, SET_ADMIN_COMMENT_LABEL} from "@/store/mutations-types";
-import {mapState} from "vuex";
 
 export default {
   data() {
@@ -68,16 +37,6 @@ export default {
       headerTitle: null,
       headerImage: null,
       bodyImage: null,
-      cardInfo: {
-        cardAvatar: '',
-        cardName: '',
-        cardSignature: '',
-        github: null,
-        qq: null,
-        bilibili: null,
-        netease: null,
-        email: null
-      },
       cardCustom: [],
       copyright: {},
       icpInfo: '',
@@ -132,29 +91,12 @@ export default {
         this.$message.error(res.msg);
       }
     })
-    getTags().then(res => {
-      if (res.success) {
-        this.tags = this.tags.concat(res.data);
-      } else {
-        this.$message.error(res.msg);
-      }
-    })
-    getRandomArticles().then(res => {
-      if (res.success) {
-        this.randomArticles = res.data;
-      } else {
-        this.$message.error(res.msg);
-      }
-    })
   },
   beforeDestroy() {
     const bgDiv = document.getElementById("bgDiv");
     if (bgDiv != null) {
       bgDiv.parentNode.removeChild(bgDiv);
     }
-  },
-  computed: {
-    ...mapState(['focusMode'])
   },
   methods: {
     assignment(res) {
@@ -166,16 +108,6 @@ export default {
         this.headerImage = res.data.headerImage;
         //整体背景图
         this.bodyImage = res.data.bodyImage;
-        //资料卡信息
-        this.cardInfo.cardAvatar = res.data.cardAvatar;
-        this.cardInfo.cardName = res.data.cardName;
-        this.cardInfo.cardSignature = res.data.cardSignature;
-        this.cardInfo.github = res.data.github;
-        this.cardInfo.qq = res.data.qq;
-        this.cardInfo.bilibili = res.data.bilibili;
-        this.cardInfo.netease = res.data.netease;
-        this.cardInfo.email = res.data.email;
-        this.cardCustom = res.data.cardCustom;
         //页脚信息
         this.copyright = res.data.copyright;
         this.icpInfo = res.data.icpInfo;
@@ -192,10 +124,6 @@ export default {
   components: {
     Nav,
     Header,
-    DataCard,
-    Notice,
-    RandomArticle,
-    TagList,
     MyAPlayer,
     Footer
   }
@@ -205,7 +133,7 @@ export default {
 <style scoped>
 .base_site {
   display: flex;
-  min-height: 100vh; /* 没有元素时，把页面撑开至100% */
+  min-height: 120vh; /* 没有元素时，把页面撑开至120% */
   flex-direction: column;
 }
 
@@ -217,19 +145,6 @@ export default {
 .ui.container {
   width: 1400px;
 }
-
-.three.wide {
-  padding: 0px !important;
-}
-
-.ten.wide {
-  padding-top: 0px !important;
-}
-
-/*.indexAnimate {*/
-/*	animation-name: fadeIn;*/
-/*	animation-duration: 0.5s;*/
-/*}*/
 
 @media screen and (max-width: 750px) {
   .ui.grid {

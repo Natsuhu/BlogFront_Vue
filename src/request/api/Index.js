@@ -6,3 +6,10 @@ export function getIndexSetting() {
         url: '/index/getSetting'
     })
 }
+
+export function getCardSetting() {
+    return request({
+        method: 'get',
+        url: '/index/getCardSetting'
+    })
+}

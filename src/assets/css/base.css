@@ -11,6 +11,28 @@ body,
     background-size: cover;
     background-position: left top;
     background-repeat: no-repeat;
+    font-family: "LXGWWenKai", sans-serif !important;
+}
+
+.ui {
+    font-weight: 500 !important;
+    font-family: "LXGWWenKai", sans-serif !important;
+}
+
+.ui.segment {
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+}
+
+@font-face {
+    font-family: "LXGWWenKai";
+    src: url("../icon/LXGWWenKaiGB-Medium.ttf");
+}
+
+.base_animate {
+    animation-name: fadeInUp;
+    animation-duration: 0.5s;
 }
 
 /*改变选择文本后的颜色*/

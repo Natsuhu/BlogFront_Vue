@@ -1,84 +1,94 @@
 <template>
-  <div class="ui segments">
-    <div class="ui attached segment base_padding_tb_large">
-      <div class="ui middle aligned mobile reversed stackable">
-        <div class="ui grid base_margin_lr">
-          <!--标题-->
-          <div class="row base_padding_tb_small">
-            <h2 class="ui header base_center">{{ article.title }}</h2>
-          </div>
-          <!--文章简要信息-->
-          <div class="row base_padding_tb_small">
-            <div class="ui horizontal link list base_center">
-              <div class="item">
-                <div class="ui blue label">
-                  <i class="small calendar icon"></i>{{ article.createTime | dateFormat('YYYY-MM-DD') }}
+  <div class="ui centered grid">
+    <!--中间-->
+    <div class="twelve wide column">
+      <div class="ui segments">
+        <div class="ui attached segment base_padding_tb_large">
+          <div class="ui middle aligned mobile reversed stackable">
+            <div class="ui grid base_margin_lr">
+              <!--标题-->
+              <div class="row base_padding_tb_small">
+                <h2 class="ui header base_center">{{ article.title }}</h2>
+              </div>
+              <!--文章简要信息-->
+              <div class="row base_padding_tb_small">
+                <div class="ui horizontal link list base_center">
+                  <div class="item">
+                    <div class="ui blue label">
+                      <i class="small calendar icon"></i>{{ article.createTime | dateFormat('YYYY-MM-DD') }}
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="ui orange label">
+                      <i class="small eye icon"></i>{{ article.views }}
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="ui label">
+                      <i class="small pencil icon"></i>字数≈{{ article.words }}字
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="ui label">
+                      <i class="small clock icon"></i>阅读时长≈{{ article.readTime }}分
+                    </div>
+                  </div>
+                  <a class="item base_common_black" @click.prevent="bigFontSize=!bigFontSize">
+                    <el-tooltip effect="dark" content="切换字体大小" placement="top">
+                      <i class="font icon"></i>
+                    </el-tooltip>
+                  </a>
+<!--                  <a class="item base_common_black" @click.prevent="changeFocusMode">-->
+<!--                    <el-tooltip effect="dark" content="专注模式" placement="top">-->
+<!--                      <i class="book icon"></i>-->
+<!--                    </el-tooltip>-->
+<!--                  </a>-->
                 </div>
               </div>
-              <div class="item">
-                <div class="ui orange label">
-                  <i class="small eye icon"></i>{{ article.views }}
-                </div>
+              <!--文章分类-->
+              <div @click="categoryRoute(article.categoryId)" class="ui large label teal base_text_point base_category">
+                <i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
               </div>
-              <div class="item">
-                <div class="ui label">
-                  <i class="small pencil icon"></i>字数≈{{ article.words }}字
-                </div>
-              </div>
-              <div class="item">
-                <div class="ui label">
-                  <i class="small clock icon"></i>阅读时长≈{{ article.readTime }}分
-                </div>
-              </div>
-              <a class="item base_common_black" @click.prevent="bigFontSize=!bigFontSize">
-                <el-tooltip effect="dark" content="切换字体大小" placement="top">
-                  <i class="font icon"></i>
-                </el-tooltip>
-              </a>
-              <a class="item base_common_black" @click.prevent="changeFocusMode">
-                <el-tooltip effect="dark" content="专注模式" placement="top">
-                  <i class="book icon"></i>
-                </el-tooltip>
-              </a>
+              <!--文章Markdown正文-->
+              <!--          <div class="typo" v-viewer :class="{'base_big_fontsize':bigFontSize}" v-html="article.content"></div>-->
+              <articleContent v-viewer :article-content="article.content" :bigFontSize="bigFontSize"/>
+              <!--点赞/打赏
+              <div class="ui large buttons m-center">
+                  <div class="ui button teal">点赞</div>
+                  <div class="or"></div>
+                     <div class="ui button blue">打赏</div>
+              </div>-->
             </div>
           </div>
-          <!--文章分类-->
-          <div @click="categoryRoute(article.categoryId)" class="ui large label teal base_text_point base_category">
-            <i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
-          </div>
-          <!--文章Markdown正文-->
-<!--          <div class="typo" v-viewer :class="{'base_big_fontsize':bigFontSize}" v-html="article.content"></div>-->
-          <articleContent v-viewer :article-content="article.content" :bigFontSize="bigFontSize" />
-          <!--点赞/打赏
-          <div class="ui large buttons m-center">
-              <div class="ui button teal">点赞</div>
-              <div class="or"></div>
-                 <div class="ui button blue">打赏</div>
-          </div>-->
         </div>
+        <!--文章信息-->
+        <div class="ui attached message teal">
+          <ul class="list">
+            <li>本文作者：{{ article.authorName }}</li>
+            <li>发表时间：{{ article.createTime | dateFormat('YYYY-MM-DD') }}</li>
+            <li>最后修改：{{ article.editTime | dateFormat('YYYY-MM-DD') }}</li>
+            <!--				<div class="ui tag label teal tags m-margin-r" v-for="tag in article.tags" :key="tag.id">{{tag.tagName}}</div>-->
+          </ul>
+        </div>
+        <!--评论区-->
+        <div class="ui segment teal" v-if="isComment">
+          <h3 class="ui header">评论区已关闭</h3>
+        </div>
+        <Comment v-else :count="count" :comments="comments"></Comment>
       </div>
     </div>
-    <!--文章信息-->
-    <div class="ui attached message teal">
-      <ul class="list">
-        <li>本文作者：{{ article.authorName }}</li>
-        <li>发表时间：{{ article.createTime | dateFormat('YYYY-MM-DD') }}</li>
-        <li>最后修改：{{ article.editTime | dateFormat('YYYY-MM-DD') }}</li>
-        <!--				<div class="ui tag label teal tags m-margin-r" v-for="tag in article.tags" :key="tag.id">{{tag.tagName}}</div>-->
-      </ul>
-    </div>
-    <!--评论区-->
-    <div class="ui segment teal" v-if="isComment">
-      <h3 class="base_text_500">评论区已关闭</h3>
-    </div>
-    <Comment v-else :count="count" :comments="comments"></Comment>
   </div>
 </template>
 
 <script>
 import Comment from "@/components/comment/Comment"
 import {getReadArticleById} from "@/request/api/Article"
-import {SET_COMMENT_QUERY_PAGE, SET_COMMENT_QUERY_ARTICLE_ID, SET_COMMENT_QUERY_PAGE_NO, SET_FOCUS_MODE} from "@/store/mutations-types"
+import {
+  SET_COMMENT_QUERY_PAGE,
+  SET_COMMENT_QUERY_ARTICLE_ID,
+  SET_COMMENT_QUERY_PAGE_NO,
+  SET_FOCUS_MODE
+} from "@/store/mutations-types"
 import {mapState} from 'vuex'
 import Prism from 'prismjs'
 import Vue from "vue";
@@ -190,12 +200,14 @@ export default {
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
 }
-
 h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
   display: block;
   content: " ";
   height: 55px;
   margin-top: -55px;
   visibility: hidden;
+}
+.twelve.wide {
+  padding: 0px !important;
 }
 </style>

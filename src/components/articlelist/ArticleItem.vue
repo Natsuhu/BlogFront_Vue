@@ -7,7 +7,7 @@
     <div class="ui grid base_margin_lr">
       <!--标题-->
       <div class="row">
-        <h3 class="ui header base_center base_text_point base_title" @click="read(article.id)">{{ article.title }}</h3>
+        <h2 class="ui header base_center base_text_point base_title" @click="read(article.id)">{{ article.title }}</h2>
       </div>
       <!--文章简要信息-->
       <div class="row base_padding_tb_small">

@@ -1,35 +1,39 @@
 <template>
-  <div class="ui segments">
-    <!--友情链接标题-->
-    <div class="ui top segment base_text_center">
-      <h2 class="base_text_500">友情链接</h2>
-      <p>{{ friends.length }}位小伙伴</p>
-    </div>
-    <!--链接卡片-->
-    <div class="ui segment">
-      <div class="ui stackable three column grid base_margin_b">
-        <div class="column" v-for="(friend , index) in friends" :key="index">
-          <a class="ui link card" :href="friend.website" @click="clickFriend(friend.nickname)">
-            <div class="image">
-              <img :src="friend.avatar">
-            </div>
-            <div class="content">
-              <div class="header">{{ friend.nickname }}</div>
-              <div class="description">{{ friend.description }}</div>
-            </div>
-          </a>
+  <div class="ui centered grid">
+    <!--中间-->
+    <div class="twelve wide column">
+      <div class="ui segments">
+        <!--友情链接标题-->
+        <div class="ui top segment base_text_center">
+          <h2 class="ui header">友情链接</h2>
         </div>
+        <!--链接卡片-->
+        <div class="ui segment">
+          <div class="ui stackable three column grid base_margin_b">
+            <div class="column" v-for="(friend , index) in friends" :key="index">
+              <a class="ui link card" :href="friend.website" @click="clickFriend(friend.nickname)">
+                <div class="image">
+                  <img :src="friend.avatar">
+                </div>
+                <div class="content">
+                  <div class="header">{{ friend.nickname }}</div>
+                  <div class="description">{{ friend.description }}</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--文字内容-->
+        <div class="ui blue segment">
+          <div class="typo content" v-html="content"></div>
+        </div>
+        <!--评论区-->
+        <div class="ui blue segment" v-if="isComment">
+          <h3 class="ui header">评论区已关闭</h3>
+        </div>
+        <Comment v-else :count="count" :comments="comments"></Comment>
       </div>
     </div>
-    <!--文字内容-->
-    <div class="ui blue segment">
-      <div class="typo content" v-html="content"></div>
-    </div>
-    <!--评论区-->
-    <div class="ui blue segment" v-if="isComment">
-      <h3 class="base_text_500">评论区已关闭</h3>
-    </div>
-    <Comment v-else :count="count" :comments="comments"></Comment>
   </div>
 </template>
 
@@ -108,6 +112,9 @@ export default {
 </script>
 
 <style scoped>
+.twelve.wide {
+  padding: 0px !important;
+}
 
 /*排版卡片中的样式*/
 .card .image {

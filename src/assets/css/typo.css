@@ -3,7 +3,8 @@
 .typo {
     color: #24292F;
     font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";*/
+    font-family: "LXGWWenKai", sans-serif;
     width: 100%;
     text-align: justify;
     word-wrap: break-word;
@@ -18,8 +19,13 @@
 
 .typo p {
     font-size: 15px;
-    line-height: 1.8;
+    line-height: 2.25rem;
     text-align: justify;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 
 /*重置 aplayer 中歌词的样式*/
@@ -267,7 +273,8 @@
 
 /* 标题应该更贴紧内容，并与其他块区分，margin 值要相应做优化 */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";*/
+    font-family: "LXGWWenKai", sans-serif;
     margin-top: 24px;
     margin-bottom: 16px;
     font-weight: 600;
@@ -278,19 +285,22 @@
     font-size: 2em;
     font-weight: 600;
     padding-bottom: .3em;
-    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
+    /*border-bottom: 1px solid hsla(210, 18%, 87%, 1);*/
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
 }
 
 .typo h2 {
     font-size: 1.5em;
     padding-bottom: .3em;
-    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
+    /*border-bottom: 1px solid hsla(210, 18%, 87%, 1);*/
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
 }
 
 .typo h3 {
     font-size: 1.25em;
     padding-bottom: .3em;
-    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
+    /*border-bottom: 1px solid hsla(210, 18%, 87%, 1);*/
+    border-bottom: 1px solid rgba(34, 36, 38, .15);
 }
 
 .typo h4 {

@@ -7,12 +7,12 @@
       </router-link>
       <!--首页-->
       <router-link to="/home" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='home'}">
-        <i class="home icon"></i>首页
+        💎 首页
       </router-link>
       <!--分类-->
       <el-dropdown trigger="click" @command="categoryRoute">
 				<span class="el-dropdown-link item" :class="{'base_mobile_hide': mobileHide}">
-					<i class="list icon"></i>分类<i class="caret down icon"></i>
+					🎲 分类<i class="caret down icon"></i>
 				</span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item :command="category.id" v-for="(category , index) in categories" :key="index">
@@ -23,20 +23,20 @@
       <!--归档-->
       <router-link to="/archives" class="item"
                    :class="{'base_mobile_hide': mobileHide,'active':$route.name==='archives'}">
-        <i class="folder icon"></i>归档
+        📚 归档
       </router-link>
       <!--动态-->
       <router-link to="/moment" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='moment'}">
-        <i class="comment alternate outline icon"></i>动态
+        🌈 动态
       </router-link>
       <!--友情链接-->
       <router-link to="/friends" class="item"
                    :class="{'base_mobile_hide': mobileHide,'active':$route.name==='friends'}">
-        <i class="users icon"></i>友链
+        👍 友链
       </router-link>
       <!--关于本站-->
       <router-link to="/about" class="item" :class="{'base_mobile_hide': mobileHide,'active':$route.name==='about'}">
-        <i class="info icon"></i>关于本站
+        ✨ 关于我
       </router-link>
       <!--手机端菜单-->
       <div class="ui menu icon button base_right_top base_mobile_show" @click="toggle">

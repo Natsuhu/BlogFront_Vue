@@ -1,42 +1,44 @@
 <template>
-  <div>
-    <!-- 页面标题 -->
-    <div class="ui top attached segment base_text_center">
-      <h2 class="base_text_500">我的动态</h2>
-      <p>发了 {{ total }} 次牢骚</p>
-    </div>
-    <!--动态列表-->
-    <div class="ui attached segment">
-      <div class="ui feed" v-for="(moment , index) in moments" :key="index">
-        <!-- 头像 -->
-        <div class="event">
-          <div class="label">
-            <img :src="moment.avatar">
-          </div>
-          <div class="content">
-            <!-- 作者名，发表时间 -->
-            <div class="moment_author base_text_500">{{ moment.author }}</div>
-            <div class="date"> {{ moment.createTime }}</div>
-            <!-- 内容 -->
-            <div class="ui card moment_card">
-              <div class="content">
-                <div class="typo description" v-viewer v-html="moment.content"></div>
-              </div>
-              <div class="content">
-                <div><i class="like icon" :class="isLike(moment.id)?'base_like_color':'outline'"
-                        @click="clickLikeMoment(moment.id)"></i> {{ moment.likes }}
+  <div class="ui centered grid">
+    <!--中间-->
+    <div class="twelve wide column">
+      <!-- 页面标题 -->
+      <div class="ui top attached segment base_text_center">
+        <h2 class="ui header">我的动态</h2>
+      </div>
+      <!--动态列表-->
+      <div class="ui attached segment">
+        <div class="ui feed" v-for="(moment , index) in moments" :key="index">
+          <!-- 头像 -->
+          <div class="event">
+            <div class="label">
+              <img :src="moment.avatar">
+            </div>
+            <div class="content">
+              <!-- 作者名，发表时间 -->
+              <div class="moment_author base_text_500">{{ moment.author }}</div>
+              <div class="date"> {{ moment.createTime }}</div>
+              <!-- 内容 -->
+              <div class="ui card">
+                <div class="content">
+                  <div class="typo description" v-viewer v-html="moment.content"></div>
+                </div>
+                <div class="content">
+                  <div><i class="like icon" :class="isLike(moment.id)?'base_like_color':'outline'"
+                          @click="clickLikeMoment(moment.id)"></i> {{ moment.likes }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- 分页 -->
-      <div class="base_text_center base_margin_b" v-show="totalPage > 1">
-        <el-pagination background layout="prev, pager, next" :page-count="totalPage"
-                       :current-page="baseQueryParams.pageNo"
-                       @current-change="handleCurrentChange">
-        </el-pagination>
+        <!-- 分页 -->
+        <div class="base_text_center base_margin_b" v-show="totalPage > 1">
+          <el-pagination background layout="prev, pager, next" :page-count="totalPage"
+                         :current-page="baseQueryParams.pageNo"
+                         @current-change="handleCurrentChange">
+          </el-pagination>
+        </div>
       </div>
     </div>
   </div>
@@ -128,10 +130,16 @@ export default {
 }
 </script>
 
-<style>
-.moment_card {
-  width: 100% !important;
+<style scoped>
+.ui.card {
+  width: 95.5% !important;
   margin-bottom: 30px !important;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 2 5px rgba(0, 0, 0, .1);
+}
+
+.twelve.wide {
+  padding: 0px !important;
 }
 
 .moment_author {

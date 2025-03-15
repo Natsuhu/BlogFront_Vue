@@ -1,7 +1,7 @@
 <template>
   <div class="ui segments base_box">
     <div class="ui segment">
-      <span class="base_text_500"><i class="tags icon"/>标签列表</span>
+      <span class="base_text_500">📌 标签云</span>
     </div>
     <div class="ui blue segment">
       <div class="ui label base_margin_b_small base_margin_r_small base_text_point"
