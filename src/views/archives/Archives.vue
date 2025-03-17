@@ -9,6 +9,13 @@
         </div>
         <!--归档-->
         <div class="ui attached segment">
+          <!-- 加载器 -->
+          <div v-if="archives === null" v-for="x in 12" :key="x" class="ui fluid placeholder">
+            <div class="image header">
+              <div class="line"/>
+              <div class="line"/>
+            </div>
+          </div>
           <div v-for="(value , key , index) in archives" :key="index">
             <div><h3 class="base_text_500"><span style="color: red">#</span> {{ key }}</h3></div>
             <div class="ui stackable three column grid base_margin_tb">
@@ -40,7 +47,7 @@ export default {
   data() {
     return {
       count: 0,
-      archives: {},
+      archives: null,
     }
   },
 

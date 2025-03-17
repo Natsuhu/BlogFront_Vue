@@ -1,5 +1,24 @@
 <template>
   <div class="ui segments base_box">
+    <!--加载器-->
+    <div v-if="cardInfo.cardName === ''" class="ui card">
+      <div class="image">
+        <div class="ui placeholder">
+          <div class="square image"></div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="ui placeholder">
+          <div class="header">
+            <div class="very short line"></div>
+            <div class="medium line"></div>
+          </div>
+          <div class="paragraph">
+            <div class="short line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="ui card">
       <!--头像-->
       <div class="image">

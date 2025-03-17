@@ -5,6 +5,13 @@
 		</div>
 		<div class="ui blue segment">
 			<div class="ui divided items">
+        <!-- 加载器 -->
+        <div v-if="randomArticles.length === 0" v-for="x in 5" :key="x" class="ui placeholder">
+          <div class="image header">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
 				<div class="base_item base_margin_b" v-for="(article , index) in randomArticles" :key="index" @click.prevent="read(article.id)">
 					<div class="img" :style="{'background-image':'url(' + article.thumbnail + ')'}"></div>
 					<div class="info">

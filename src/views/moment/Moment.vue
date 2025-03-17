@@ -8,6 +8,13 @@
       </div>
       <!--动态列表-->
       <div class="ui attached segment">
+        <!-- 加载器 -->
+        <div v-if="moments.length === 0" v-for="x in 12" :key="x" class="ui fluid placeholder">
+          <div class="image header">
+            <div class="line"/>
+            <div class="line"/>
+          </div>
+        </div>
         <div class="ui feed" v-for="(moment , index) in moments" :key="index">
           <!-- 头像 -->
           <div class="event">

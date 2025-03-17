@@ -10,6 +10,22 @@
         <!--链接卡片-->
         <div class="ui segment">
           <div class="ui stackable three column grid base_margin_b">
+            <!--加载器-->
+            <div v-if="friends.length === 0" class="column" v-for="x in 3" :key="x">
+              <div class="ui raised segment">
+                <div class="ui placeholder">
+                  <div class="image header">
+                    <div class="line"/>
+                    <div class="line"/>
+                  </div>
+                  <div class="paragraph">
+                    <div class="medium line"/>
+                    <div class="short line"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--友链-->
             <div class="column" v-for="(friend , index) in friends" :key="index">
               <a class="ui link card" :href="friend.website" @click="clickFriend(friend.nickname)">
                 <div class="image">
@@ -25,6 +41,18 @@
         </div>
         <!--文字内容-->
         <div class="ui blue segment">
+          <!-- 加载器 -->
+          <div v-if="content === ''" class="ui fluid placeholder">
+            <div class="image header">
+              <div class="line"/>
+              <div class="line"/>
+            </div>
+            <div v-for="x in 6" :key="x" class="paragraph">
+              <div class="line"/>
+              <div class="line"/>
+              <div class="line"/>
+            </div>
+          </div>
           <div class="typo content" v-html="content"></div>
         </div>
         <!--评论区-->
@@ -52,7 +80,7 @@ export default {
     return {
       friends: [],
       isComment: true,
-      content: "",
+      content: '',
       page: 2,
       articleId: null
     }
