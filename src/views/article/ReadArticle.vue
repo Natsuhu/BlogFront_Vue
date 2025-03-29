@@ -14,12 +14,17 @@
               <div class="row base_padding_tb_small">
                 <div class="ui horizontal link list base_center">
                   <div class="item">
-                    <div class="ui blue label">
+                    <div class="ui label">
+                      <i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="ui label">
                       <i class="small calendar icon"></i>{{ article.createTime | dateFormat('YYYY-MM-DD') }}
                     </div>
                   </div>
                   <div class="item">
-                    <div class="ui orange label">
+                    <div class="ui label">
                       <i class="small eye icon"></i>{{ article.views }}
                     </div>
                   </div>
@@ -45,12 +50,6 @@
 <!--                  </a>-->
                 </div>
               </div>
-              <!--文章分类-->
-              <div @click="categoryRoute(article.categoryId)" class="ui large label teal base_text_point base_category">
-                <i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
-              </div>
-              <!--文章Markdown正文-->
-              <!--          <div class="typo" v-viewer :class="{'base_big_fontsize':bigFontSize}" v-html="article.content"></div>-->
               <articleContent v-viewer :article-content="article.content" :bigFontSize="bigFontSize"/>
               <!--点赞/打赏
               <div class="ui large buttons m-center">
@@ -62,16 +61,16 @@
           </div>
         </div>
         <!--文章信息-->
-        <div class="ui attached message teal">
-          <ul class="list">
-            <li>本文作者：{{ article.authorName }}</li>
-            <li>发表时间：{{ article.createTime | dateFormat('YYYY-MM-DD') }}</li>
-            <li>最后修改：{{ article.editTime | dateFormat('YYYY-MM-DD') }}</li>
+        <div class="ui segment blue">
+          <div class="ui list">
+            <div class="item">本文作者：{{ article.authorName }}</div>
+            <div class="item">发表时间：{{ article.createTime | dateFormat('YYYY-MM-DD') }}</div>
+            <div class="item">最后修改：{{ article.editTime | dateFormat('YYYY-MM-DD') }}</div>
             <!--				<div class="ui tag label teal tags m-margin-r" v-for="tag in article.tags" :key="tag.id">{{tag.tagName}}</div>-->
-          </ul>
+          </div>
         </div>
         <!--评论区-->
-        <div class="ui segment teal" v-if="isComment">
+        <div class="ui segment blue" v-if="isComment">
           <h3 class="ui header">评论区已关闭</h3>
         </div>
         <Comment v-else :count="count" :comments="comments"></Comment>
@@ -194,12 +193,6 @@ export default {
 </script>
 
 <style scoped>
-.base_category {
-  position: relative;
-  right: 2.2em;
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-}
 h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
   display: block;
   content: " ";

@@ -11,55 +11,58 @@
       </div>
       <!--文章简要信息-->
       <div class="row base_padding_tb_small">
-        <div class="ui horizontal list base_center base_text_noselect">
-          <div class="item">
-            <div class="ui blue label">
-              <i class="small calendar icon"></i>{{ article.createTime | dateFormat('YYYY-MM-DD') }}
-            </div>
-          </div>
-          <div class="item">
-            <div class="ui orange label">
-              <i class="small eye icon"></i>{{ article.views }}
+        <div class="ui mini horizontal list base_center base_text_noselect">
+          <div class="item" @click="categoryRoute(article.categoryId)" >
+            <div class="ui label">
+              <i class="small folder open icon"/>分类：{{ article.categoryName }}
             </div>
           </div>
           <div class="item">
             <div class="ui label">
-              <i class="small pencil icon"></i>字数≈{{ article.words }}字
+              <i class="small calendar icon"/>发布于：{{ article.createTime | dateFormat('YYYY-MM-DD') }}
             </div>
           </div>
           <div class="item">
             <div class="ui label">
-              <i class="small clock icon"></i>阅读时长≈{{ article.readTime }}分
+              <i class="small eye icon"/>阅读量：{{ article.views }}
+            </div>
+          </div>
+          <div class="item">
+            <div class="ui label">
+              <i class="small pencil icon"/>字数≈{{ article.words }}字
+            </div>
+          </div>
+          <div class="item">
+            <div class="ui label">
+              <i class="small clock icon"/>阅读时长≈{{ article.readTime }}分
             </div>
           </div>
         </div>
       </div>
       <!--文章分类-->
-      <div @click="categoryRoute(article.categoryId)" class="ui large label base_text_point base_category">
-        <i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
-      </div>
+
       <!--文章描述-->
       <div class="row">
         <div class="typo" v-html="article.description"></div>
       </div>
       <!--首图-->
-      <div class="row base_text_point" @click="read(article.id)">
+      <div v-viewer v-if="article.thumbnail" class="row base_text_point">
         <img class="base_center" style="border-radius: 5px;" :src="article.thumbnail">
       </div>
 
-      <!--按钮-->
-      <!--			<div class="row">-->
-      <!--				<div class="ui animated fade button base_center" @click="read(article.id)">-->
-      <!--					<div class="visible content">阅读全文</div>-->
-      <!--					<div class="hidden content"><i class="arrow right icon"></i></div>-->
-      <!--				</div>-->
-      <!--			</div>-->
+
+<!--      			<div class="row">-->
+<!--      				<div class="ui animated fade button base_center" @click="read(article.id)">-->
+<!--      					<div class="visible content">阅读全文</div>-->
+<!--      					<div class="hidden content"><i class="arrow right icon"></i></div>-->
+<!--      				</div>-->
+<!--      			</div>-->
 
       <!--分割线-->
       <div class="ui divider base_margin_lr_no"></div>
       <!--标签列表-->
       <div class="row base_padding_tb_no base_margin_b_mini">
-        <div class="ui label base_margin_b base_margin_r" v-for="(tag , index) in article.tags" :key="index"
+        <div class="ui tag label base_margin_b base_margin_r" v-for="(tag , index) in article.tags" :key="index"
              :style="{'background-color': tag.color, 'color': 'white'}">{{ tag.name }}
         </div>
       </div>
@@ -85,15 +88,6 @@ export default {
 </script>
 
 <style scoped>
-.base_category {
-  position: relative;
-  right: 2.2em;
-  color: white;
-  background-color: #409EFF;
-  border-top-left-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
-}
-
 .base_title {
   letter-spacing: 1px;
   transition: .3s ease !important;

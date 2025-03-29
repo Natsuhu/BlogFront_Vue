@@ -1,13 +1,6 @@
 <template>
   <div class="ui centered grid">
     <!--左侧-->
-    <div class="three wide column base_mobile_hide">
-      <DataCard :cardInfo="cardInfo" :cardCustom="cardCustom" v-show="!this.focusMode"/>
-      <Notice v-if="false"/>
-      <RandomArticle :randomArticles="randomArticles" v-show="!this.focusMode"/>
-      <TagList :tags="tags" v-show="!this.focusMode"/>
-    </div>
-    <!--中间-->
     <div class="ten wide column">
       <!--加载器-->
       <div v-if="articles.length === 0" class="ui segment">
@@ -19,6 +12,13 @@
         </div>
       </div>
       <ArticleItem v-for="(article , index) in articles" :key="index" :article="article" />
+    </div>
+    <!--有侧-->
+    <div class="three wide column base_mobile_hide">
+      <DataCard :cardInfo="cardInfo" :cardCustom="cardCustom" v-show="!this.focusMode"/>
+      <Notice v-if="false"/>
+      <RandomArticle :randomArticles="randomArticles" v-show="!this.focusMode"/>
+      <TagList :tags="tags" v-show="!this.focusMode"/>
     </div>
     <!-- 底部分页 -->
     <div class="pagination base_margin_b" v-show="totalPage > 1">

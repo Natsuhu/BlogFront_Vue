@@ -3,7 +3,7 @@
     <!--中间-->
     <div class="twelve wide column">
       <div class="ui top segment base_text_center">
-        <h2 class="base_text_500">此分类下的文章</h2>
+        <h2 class="ui header">此分类下的文章</h2>
       </div>
       <ArticleItem v-for="(article , index) in articles" :key="index" :article="article"></ArticleItem>
       <div class="pagination base_margin_b" v-show="totalPage > 1">
