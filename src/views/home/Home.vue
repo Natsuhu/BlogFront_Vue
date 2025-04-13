@@ -13,7 +13,7 @@
       </div>
       <ArticleItem v-for="(article , index) in articles" :key="index" :article="article" />
     </div>
-    <!--有侧-->
+    <!--右侧-->
     <div class="three wide column base_mobile_hide">
       <DataCard :cardInfo="cardInfo" :cardCustom="cardCustom" v-show="!this.focusMode"/>
       <Notice v-if="false"/>

@@ -12,7 +12,10 @@
         <keep-alive include="Home">
           <router-view class="base_animate"/>
         </keep-alive>
-        <el-backtop></el-backtop>
+        <el-tooltip class="item" effect="dark" content="开启\关闭高斯模糊" placement="top-start">
+          <el-button @click="changeFilterStatus" class="base_switch" icon="el-icon-set-up" circle />
+        </el-tooltip>
+        <el-backtop />
       </div>
     </div>
     <Footer :copyright="copyright" :icpInfo="icpInfo" :badgeList="badgeList"/>
@@ -28,7 +31,7 @@ import MyAPlayer from "@/components/common/MyAPlayer";
 import {getIndexSetting} from "@/request/api/Index";
 import {getCategories} from "@/request/api/Category"
 
-import {SAVE_CLIENT_SIZE, SET_WEB_TITLE_SUFFIX, SET_ADMIN_COMMENT_LABEL} from "@/store/mutations-types";
+import {SAVE_CLIENT_SIZE, SET_WEB_TITLE_SUFFIX, SET_ADMIN_COMMENT_LABEL, CHANGE_FILTER_STATUS} from "@/store/mutations-types";
 
 export default {
   data() {
@@ -43,7 +46,8 @@ export default {
       badgeList: [],
       randomArticles: [],
       tags: [],
-      categories: []
+      categories: [],
+      isCloseFilter: true
     }
   },
   async mounted() {
@@ -120,6 +124,10 @@ export default {
         this.$message.error(res.msg);
       }
     },
+    changeFilterStatus() {
+      this.isCloseFilter = !this.isCloseFilter;
+      this.$store.commit(CHANGE_FILTER_STATUS, this.isCloseFilter);
+    }
   },
   components: {
     Nav,
@@ -136,20 +144,24 @@ export default {
   min-height: 120vh; /* 没有元素时，把页面撑开至120% */
   flex-direction: column;
 }
-
 .base_main {
   flex: 1;
   margin-top: 80px;
 }
-
 .ui.container {
   width: 1400px;
 }
-
 @media screen and (max-width: 750px) {
   .ui.grid {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
+}
+.base_switch {
+  z-index: 5;
+  position: fixed;
+  right: 40px;
+  bottom: 85px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .12);
 }
 </style>

@@ -12,6 +12,8 @@ export default {
 		pageNo: 1,
 		pageSize: 5
 	},
+	//全局高斯模糊开关
+	isCloseFilter: false,
 	//评论数量
 	count: 0,
 	//评论列表

@@ -6,7 +6,8 @@ import {
 	SET_WEB_TITLE_SUFFIX,
 	SET_FOCUS_MODE,
 	SET_ADMIN_COMMENT_LABEL,
-	SAVE_CLIENT_SIZE
+	SAVE_CLIENT_SIZE,
+	CHANGE_FILTER_STATUS
 } from "./mutations-types";
 
 export default {
@@ -33,5 +34,9 @@ export default {
 	},
 	[SET_ADMIN_COMMENT_LABEL](state, adminCommentLabel) {
 		state.adminCommentLabel = adminCommentLabel
+	},
+	[CHANGE_FILTER_STATUS](state, isCloseFilter) {
+		state.isCloseFilter = isCloseFilter
+		document.documentElement.setAttribute('is-close-filter', isCloseFilter)
 	}
 }

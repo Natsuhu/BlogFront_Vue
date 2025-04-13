@@ -5,7 +5,7 @@
       <div class="ui segments">
         <div class="ui attached segment base_padding_tb_large">
           <div class="ui middle aligned mobile reversed stackable">
-            <div class="ui grid base_margin_lr">
+            <div class="ui grid">
               <!--标题-->
               <div class="row base_padding_tb_small">
                 <h2 class="ui header base_center">{{ article.title }}</h2>
@@ -15,17 +15,17 @@
                 <div class="ui horizontal link list base_center">
                   <div class="item">
                     <div class="ui label">
-                      <i class="small folder open icon"></i><span class="base_text_500">{{ article.categoryName }}</span>
+                      <i class="small folder open icon"></i><span class="base_text_500">分类：{{ article.categoryName }}</span>
                     </div>
                   </div>
                   <div class="item">
                     <div class="ui label">
-                      <i class="small calendar icon"></i>{{ article.createTime | dateFormat('YYYY-MM-DD') }}
+                      <i class="small calendar icon"></i>发布于：{{ article.createTime | dateFormat('YYYY-MM-DD') }}
                     </div>
                   </div>
                   <div class="item">
                     <div class="ui label">
-                      <i class="small eye icon"></i>{{ article.views }}
+                      <i class="small eye icon"></i>阅读量：{{ article.views }}
                     </div>
                   </div>
                   <div class="item">
@@ -63,9 +63,12 @@
         <!--文章信息-->
         <div class="ui segment blue">
           <div class="ui list">
-            <div class="item">本文作者：{{ article.authorName }}</div>
+            <div class="item">本文作者：{{ article.authorName }}
+              <router-link to="/about">（联系作者）</router-link>
+            </div>
             <div class="item">发表时间：{{ article.createTime | dateFormat('YYYY-MM-DD') }}</div>
             <div class="item">最后修改：{{ article.editTime | dateFormat('YYYY-MM-DD') }}</div>
+            <div class="item">本站点采用<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> 署名 4.0 国际 (CC BY 4.0) </a>创作共享协议。你可自由转载、引用，且允许商业性使用。但需署名作者且注明文章出处。</div>
             <!--				<div class="ui tag label teal tags m-margin-r" v-for="tag in article.tags" :key="tag.id">{{tag.tagName}}</div>-->
           </div>
         </div>

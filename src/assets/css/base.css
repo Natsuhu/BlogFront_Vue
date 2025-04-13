@@ -19,17 +19,29 @@ body,
     font-family: "LXGWWenKai", sans-serif !important;
 }
 
-.ui.segment {
-    background-color: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
-}
-
 @font-face {
     font-family: "LXGWWenKai";
-    src: url("../icon/LXGWWenKaiGB-Medium.ttf");
+    src: url("../icon/LXGWWenKaiGB-Medium.woff2");
 }
 
+/*全站高斯模糊*/
+:root {
+    --bg-color: white;
+    --bd-filter: unset;
+}
+
+[is-close-filter="false"] {
+    --bg-color: rgba(255, 255, 255, 0.8);
+    --bd-filter: blur(30px);
+}
+
+.ui.segment {
+    background-color: var(--bg-color);
+    -webkit-backdrop-filter: var(--bd-filter);
+    backdrop-filter: var(--bd-filter);
+}
+
+/*路由切换动画*/
 .base_animate {
     animation-name: fadeInUp;
     animation-duration: 0.5s;

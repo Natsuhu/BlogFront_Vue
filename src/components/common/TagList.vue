@@ -3,7 +3,7 @@
     <div class="ui segment">
       <span class="base_text_500">📌 标签云</span>
     </div>
-    <div class="ui blue segment">
+    <div class="ui blue segment" style="padding: 7px">
       <!--加载器-->
       <div v-if="tags.length === 0" class="ui placeholder">
         <div class="line"/>
@@ -12,7 +12,7 @@
         <div class="line"/>
         <div class="line"/>
       </div>
-      <div class="ui label base_margin_b_small base_margin_r_small base_text_point"
+      <div class="ui label base_margin_tb_mini base_margin_r_small base_text_point"
            v-for="(tag , index) in tags"
            :key="index"
            @click="tagRoute(tag.id)"
@@ -42,5 +42,5 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 </style>

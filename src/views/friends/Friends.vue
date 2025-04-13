@@ -27,7 +27,7 @@
             </div>
             <!--友链-->
             <div class="column" v-for="(friend , index) in friends" :key="index">
-              <a class="ui link card" :href="friend.website" @click="clickFriend(friend.nickname)">
+              <a class="ui link card" :href="friend.website" target="_blank" @click="clickFriend(friend.nickname)">
                 <div class="image">
                   <img :src="friend.avatar">
                 </div>
@@ -123,14 +123,6 @@ export default {
       this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, this.articleId)
     }
   },
-
-  mounted() {
-    $('.modal').modal('setting', 'transition', "fade up")
-    $('.base_show_modal').click(function () {
-      $('.modal').modal('show')
-    })
-  },
-
   components: {
     Comment
   }

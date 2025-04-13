@@ -55,6 +55,10 @@
 		cursor: pointer;
 		user-select: none;
 	}
+
+  .base_item:last-child {
+    margin-bottom: unset !important;
+  }
 	
 	.img {
 		position: absolute;
