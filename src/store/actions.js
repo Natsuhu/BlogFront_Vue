@@ -1,5 +1,5 @@
 import {saveComment, getComments} from "@/request/api/Comment";
-import {Message, Notification} from "element-ui";
+import {Notification} from "element-ui";
 
 export default {
 	getComments({rootState}) {
@@ -17,7 +17,8 @@ export default {
 			}
 		});
 	},
-	submitCommentForm({rootState, dispatch}) {
+	async submitCommentForm({rootState, dispatch}) {
+		let isSuccess = false
 		let form = {...rootState.commentForm}
 		form.page = rootState.commentQueryParams.page
 		form.articleId = rootState.commentQueryParams.articleId
@@ -25,12 +26,14 @@ export default {
 		form.replyNickname = rootState.replyNickname
 		form.originId = rootState.originId
 		const token = window.localStorage.getItem('token')
-		saveComment(token, form).then(res => {
+		await saveComment(token, form).then(res => {
 			if (res.success) {
 				Notification({
 					title: '评论成功',
 					type: 'success'
 				})
+				isSuccess = true
+				rootState.parentCommentId = -1
 				dispatch('getComments')
 			} else {
 				Notification({
@@ -39,12 +42,13 @@ export default {
 					type: 'error'
 				})
 			}
-		}).catch(() => {
+		}).catch((e) => {
 			Notification({
 				title: '评论失败',
-				message: '异常错误',
+				message: e,
 				type: 'error'
 			})
 		})
+		return isSuccess;
 	}
 }

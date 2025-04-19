@@ -56,8 +56,12 @@ export default {
     //TODO 判断如果超时或出错，弹框提醒博客后端程序挂掉了
     await this.assignment(res)
     //保存可视窗口大小
+    let height = document.body.clientHeight;
+    if (this.headerImage == null) {
+      height = 0;
+    }
     this.$store.commit(SAVE_CLIENT_SIZE, {
-      clientHeight: document.body.clientHeight,
+      clientHeight: height,
       clientWidth: document.body.clientWidth
     })
     //VUE钩子函数，当窗口大小发送变化时，动态改变。

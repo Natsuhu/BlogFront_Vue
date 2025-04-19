@@ -55,15 +55,18 @@ export default {
 
   methods: {
     postForm() {
-      this.$refs.formRef.validate(valid => {
+      this.$refs.formRef.validate(async valid => {
         if (!valid || this.commentForm.content === '' || this.commentForm.content.length > 250) {
           this.$notify({
             title: '评论失败',
             type: 'warning'
           })
         } else {
-          this.$store.dispatch('submitCommentForm')
-          this.commentForm.content = ''
+          //成功时，自动取消回复，并清空文本框内容，失败则相反。
+          const isSuccess = await this.$store.dispatch('submitCommentForm');
+          if (isSuccess) {
+            this.commentForm.content = null;
+          }
         }
       })
     },
