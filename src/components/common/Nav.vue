@@ -39,7 +39,7 @@
         ✨ 关于我
       </router-link>
       <!--搜索框-->
-      <div class="ui search">
+      <div class="ui search base_mobile_hide">
         <div class="ui icon input">
           <input class="prompt" type="text" placeholder="搜索文章内容...">
           <i class="search icon"></i>
