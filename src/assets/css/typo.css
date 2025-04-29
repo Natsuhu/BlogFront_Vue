@@ -9,6 +9,7 @@
     text-align: justify;
     word-wrap: break-word;
     letter-spacing: 1px;
+    scroll-margin-top: 60px;
 }
 
 .typo img {
@@ -279,6 +280,7 @@
     margin-bottom: 16px;
     font-weight: 600;
     line-height: 1.25;
+    scroll-margin-top: 60px;
 }
 
 .typo h1 {
