@@ -1,11 +1,9 @@
 <template>
   <header ref="header">
     <div class="view">
-      <!-- 先用img标签缓存图片 -->
-      <img :src="headerImage" style="display: none">
       <div class="bg" :style="{'background-image': 'url(' + headerImage + ')'}">
         <div>
-          <div class="base_header_title">{{ text }}<span class="base_blink">_</span></div>
+          <div class="base_header_title" :style="{'color': headerTitleColor}">{{ text }}<span class="base_blink">_</span></div>
         </div>
         <div class="wrapper">
           <i class="ali-iconfont icon-down" @click="scrollToMain"></i>
@@ -22,6 +20,7 @@ export default {
   name: "Header",
   props: {
     headerTitle: String,
+    headerTitleColor: String,
     headerImage: String
   },
   data() {

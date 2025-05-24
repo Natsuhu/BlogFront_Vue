@@ -1,24 +1,31 @@
 <template>
-  <div class="base_site">
-    <!--  导航菜单  -->
-    <Nav :blogName="blogName" :categories="categories"/>
-    <!--  首页大图  -->
-    <div class="base_mobile_hide">
-      <Header :headerTitle="headerTitle" :headerImage="headerImage" v-if="$route.name==='home' && headerImage != null"/>
+  <div>
+    <div v-if="isLoading" class="base_site">
+        <div class="ui active inverted dimmer">
+          <div class="ui text loader">别着急，马上就好~</div>
+        </div>
     </div>
-    <!--  主容器  -->
-    <div class="base_main">
-      <div class="ui container">
-        <keep-alive include="Home">
-          <router-view class="base_animate"/>
-        </keep-alive>
-        <el-tooltip class="item" effect="dark" content="开启\关闭高斯模糊" placement="top-start">
-          <el-button @click="changeFilterStatus" class="base_switch" icon="el-icon-set-up" circle />
-        </el-tooltip>
-        <el-backtop />
+    <div v-else class="base_site">
+      <!--  导航菜单  -->
+      <Nav :blogName="blogName" :categories="categories"/>
+      <!--  首页大图  -->
+      <div class="base_mobile_hide">
+        <Header :headerTitle="headerTitle" :headerTitleColor="headerTitleColor" :headerImage="headerImage" v-if="$route.name==='home' && headerImage != null"/>
       </div>
+      <!--  主容器  -->
+      <div class="base_main">
+        <div class="ui container">
+          <keep-alive include="Home">
+            <router-view class="base_animate"/>
+          </keep-alive>
+          <el-tooltip class="item" effect="dark" content="开启\关闭高斯模糊" placement="top-start">
+            <el-button @click="changeFilterStatus" class="base_switch" icon="el-icon-set-up" circle />
+          </el-tooltip>
+          <el-backtop />
+        </div>
+      </div>
+      <Footer :copyright="copyright" :icpInfo="icpInfo" :badgeList="badgeList"/>
     </div>
-    <Footer :copyright="copyright" :icpInfo="icpInfo" :badgeList="badgeList"/>
   </div>
 </template>
 
@@ -38,6 +45,7 @@ export default {
     return {
       blogName: '',
       headerTitle: null,
+      headerTitleColor: null,
       headerImage: null,
       bodyImage: null,
       cardCustom: [],
@@ -47,7 +55,8 @@ export default {
       randomArticles: [],
       tags: [],
       categories: [],
-      isCloseFilter: true
+      isCloseFilter: true,
+      isLoading: true
     }
   },
   async mounted() {
@@ -55,6 +64,8 @@ export default {
     const res = await getIndexSetting()
     //TODO 判断如果超时或出错，弹框提醒博客后端程序挂掉了
     await this.assignment(res)
+    //结束加载状态
+    this.isLoading = false
     //保存可视窗口大小
     let height = document.body.clientHeight;
     if (this.headerImage == null) {
@@ -113,6 +124,7 @@ export default {
         this.blogName = res.data.blogName;
         //首图和首图标题
         this.headerTitle = res.data.headerTitle;
+        this.headerTitleColor = res.data.headerTitleColor;
         this.headerImage = res.data.headerImage;
         //整体背景图
         this.bodyImage = res.data.bodyImage;

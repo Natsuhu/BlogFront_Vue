@@ -2,15 +2,6 @@
   <div class="ui centered grid">
     <!--左侧-->
     <div class="ten wide column">
-      <!--加载器-->
-      <div v-if="articles.length === 0" class="ui segment">
-        <div class="ui placeholder">
-          <div class="image header">
-            <div class="line"></div>
-            <div class="line"></div>
-          </div>
-        </div>
-      </div>
       <ArticleItem v-for="(article , index) in articles" :key="index" :article="article" />
     </div>
     <!--右侧-->
