@@ -1,5 +1,15 @@
 import request from "@/request/BaseRequest"
 
+export function getCommentCount(commentQueryParams) {
+	return request({
+		method: 'get' ,
+		url: '/comments/getCommentCount',
+		params: {
+			...commentQueryParams
+		}
+	})
+}
+
 export function saveComment(token, comment) {
 	return request({
 		method: 'post',

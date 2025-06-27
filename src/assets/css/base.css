@@ -192,12 +192,20 @@ footer {
     margin-bottom: 2em !important;
 }
 
+.base_margin_t {
+    margin-top: 1em !important;
+}
+
 .base_margin_t_large {
     margin-top: 2em !important;
 }
 
 .base_margin_r {
     margin-right: 1em !important;
+}
+
+.base_margin_r_large {
+    margin-right: 2em !important;
 }
 
 .base_margin_r_small {

@@ -3,7 +3,7 @@
     <span class="base_not_replay base_text_500 base_text_point" @click="setReply()"
           v-show="parentCommentId!==-1">取消回复</span>
     <el-form :inline="true" :model="commentForm" :rules="formRules" ref="formRef" size="small">
-      <el-input :class="'textarea'" type="textarea" :rows="5" v-model="commentForm.content" placeholder="评论千万条，等你发一条!"
+      <el-input :class="'textarea'" type="textarea" :rows="3" v-model="commentForm.content" placeholder="评论千万条，等你发一条!"
                 maxlength="250" show-word-limit :validate-event="false"></el-input>
       <el-form-item prop="qq">
         <el-popover ref="qqPopover" placement="bottom" trigger="focus" content="输入QQ自动拉取昵称和头像"></el-popover>

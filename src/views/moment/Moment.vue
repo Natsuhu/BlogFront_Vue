@@ -26,15 +26,25 @@
               <div class="moment_author base_text_500">{{ moment.author }}</div>
               <div class="date"> {{ moment.createTime }}</div>
               <!-- 内容 -->
-              <div class="ui card">
-                <div class="content">
-                  <div class="typo description" v-viewer v-html="moment.content"></div>
-                </div>
-                <div class="content">
-                  <div><i class="like icon" :class="isLike(moment.id)?'base_like_color':'outline'"
-                          @click="clickLikeMoment(moment.id)"></i> {{ moment.likes }}
+              <div class="ui segments base_margin_b">
+                <div class="ui card">
+                  <div class="content">
+                    <div class="typo description" v-viewer v-html="moment.content"></div>
+                  </div>
+                  <div class="content">
+                    <div>
+                      <i class="like icon" :class="isLike(moment.id)?'base_like_color':'outline'"
+                         @click="clickLikeMoment(moment.id)"/>
+                      <span class="base_margin_r_large">{{ moment.likes }}</span>
+                      <i v-if="moment.isCommentEnabled" class="comment outline icon base_margin_l base_text_point"
+                         @click="openComment(moment.id)"/>
+                      <span v-if="moment.isCommentEnabled">{{ moment.commentCount }}</span>
+                    </div>
                   </div>
                 </div>
+                <Comment v-if="moment.isCommentEnabled && isOpenComment && openCommentMomentId === moment.id"
+                         :count="moment.commentCount"
+                         :comments="comments"/>
               </div>
             </div>
           </div>
@@ -52,8 +62,11 @@
 </template>
 
 <script>
-import {Notification} from "element-ui";
+import Comment from "@/components/comment/Comment"
+import {Notification} from "element-ui"
 import {getPublicMoments, likeMoment} from '@/request/api/Moment'
+import {SET_COMMENT_QUERY_PAGE, SET_COMMENT_QUERY_ARTICLE_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
+import {mapState} from "vuex"
 
 export default {
   name: 'Moment',
@@ -67,10 +80,13 @@ export default {
       baseQueryParams: {
         pageNo: 1,
         pageSize: 5
-      }
+      },
+      openCommentMomentId: null,
+      isOpenComment: false
     }
   },
   computed: {
+    ...mapState(['count', 'comments']),
     isLike() {
       return function (id) {
         return this.likeMomentIds.indexOf(id) > -1
@@ -78,9 +94,17 @@ export default {
     }
   },
   watch: {
+    //将likeMomentIds最新值的json数据保存到localStorage
     likeMomentIds(newValue) {
-      //将likeMomentIds最新值的json数据保存到localStorage
       window.localStorage.setItem('likeMomentIds', JSON.stringify(newValue))
+    },
+    //在当前页面，count发生变化则更新对应动态的评论数量
+    count(newValue) {
+      this.moments.forEach(item => {
+        if (item.id === this.openCommentMomentId) {
+          item.commentCount = newValue
+        }
+      })
     }
   },
   created() {
@@ -121,6 +145,28 @@ export default {
         }
       })
     },
+    openComment(momentId) {
+      //判断评论组件是否打开
+      if (momentId !== this.openCommentMomentId) {
+        this.isOpenComment = true;
+        this.openCommentMomentId = momentId;
+      } else {
+        if (this.isOpenComment) {
+          this.isOpenComment = false;
+          this.openCommentMomentId = null;
+        } else {
+          this.isOpenComment = true;
+          this.openCommentMomentId = momentId;
+        }
+      }
+      //如果评论组件打开则获取评论数据
+      if (this.isOpenComment) {
+        this.$store.commit(SET_COMMENT_QUERY_PAGE_NO, 1)
+        this.$store.commit(SET_COMMENT_QUERY_PAGE, 6)
+        this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, momentId)
+        this.$store.dispatch('getComments')
+      }
+    },
     handleCurrentChange(newPage) {
       window.scrollTo({top: 0, behavior: 'smooth'})
       this.baseQueryParams.pageNo = newPage
@@ -134,13 +180,20 @@ export default {
       })
     }
   },
+  components: {
+    Comment
+  }
 }
 </script>
 
 <style scoped>
-.ui.card {
+.ui.segments {
   width: 95.5% !important;
-  margin-bottom: 30px !important;
+}
+
+.ui.card {
+  width: 100% !important;
+  margin-bottom: 0px !important;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 2 5px rgba(0, 0, 0, .1);
 }
@@ -156,5 +209,10 @@ export default {
 
 .base_like_color {
   color: red;
+}
+
+.comment.icon:hover {
+  transition: color .15s linear;
+  color: #66ccff;
 }
 </style>
