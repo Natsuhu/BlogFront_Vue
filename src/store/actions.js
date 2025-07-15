@@ -20,11 +20,10 @@ export default {
 	async submitCommentForm({rootState, dispatch}) {
 		let isSuccess = false
 		let form = {...rootState.commentForm}
-		form.page = rootState.commentQueryParams.page
-		form.articleId = rootState.commentQueryParams.articleId
+		form.objectType = rootState.commentQueryParams.objectType
+		form.objectId = rootState.commentQueryParams.objectId
 		form.parentCommentId = rootState.parentCommentId
 		form.replyNickname = rootState.replyNickname
-		form.originId = rootState.originId
 		const token = window.localStorage.getItem('token')
 		await saveComment(token, form).then(res => {
 			if (res.success) {

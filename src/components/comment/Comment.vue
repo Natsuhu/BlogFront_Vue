@@ -16,7 +16,7 @@
           <div class="metadata">
             <span class="date">{{ rootComment.content.createTime | dateFormat('YYYY-MM-DD HH:mm') }}</span>
             <span class="base_replay base_text_point"
-                  @click="setReply(rootComment.id , rootComment.content.nickname , rootComment.content.originId)">回复
+                  @click="setReply(rootComment.id , rootComment.content.nickname , rootComment.content.treeId)">回复
             </span>
           </div>
           <div class="text">
@@ -37,7 +37,7 @@
               <div class="metadata">
                 <span class="date">{{ childrenComment.content.createTime | dateFormat('YYYY-MM-DD HH:mm') }}</span>
                 <span class="base_replay base_text_point"
-                      @click="setReply(childrenComment.id , childrenComment.content.nickname , childrenComment.content.originId)">
+                      @click="setReply(childrenComment.id , childrenComment.content.nickname , childrenComment.content.treeId)">
                   回复
                 </span>
               </div>

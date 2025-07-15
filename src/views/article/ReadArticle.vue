@@ -96,7 +96,7 @@
 <script>
 import Comment from "@/components/comment/Comment"
 import {getReadArticleById} from "@/request/api/Article"
-import {SET_COMMENT_QUERY_PAGE, SET_COMMENT_QUERY_ARTICLE_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
+import {SET_COMMENT_QUERY_OBJECT_TYPE, SET_COMMENT_QUERY_OBJECT_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
 import {mapState} from 'vuex'
 import Vue from "vue"
 
@@ -143,8 +143,8 @@ export default {
     //初始化
     init() {
       this.$store.commit(SET_COMMENT_QUERY_PAGE_NO, 1)
-      this.$store.commit(SET_COMMENT_QUERY_PAGE, 1)
-      this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, this.articleId)
+      this.$store.commit(SET_COMMENT_QUERY_OBJECT_TYPE, 1)
+      this.$store.commit(SET_COMMENT_QUERY_OBJECT_ID, this.articleId)
     },
     //获取文章
     getArticle(id = this.articleId) {

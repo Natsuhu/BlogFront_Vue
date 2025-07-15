@@ -1,9 +1,9 @@
 export const SAVE_INTRODUCTION = 'saveIntroduction'
 export const SAVE_COMMENT_RESULT = 'saveCommentResult'
 /** 以上暂未用 */
-export const SET_COMMENT_QUERY_PAGE = 'setCommentQueryPage'
+export const SET_COMMENT_QUERY_OBJECT_TYPE = 'setCommentQueryObjectType'
 export const SET_WEB_TITLE_SUFFIX = 'setWebTitleSuffix'
-export const SET_COMMENT_QUERY_ARTICLE_ID = 'setCommentQueryArticleId'
+export const SET_COMMENT_QUERY_OBJECT_ID = 'setCommentQueryObjectId'
 export const SET_COMMENT_QUERY_PAGE_NO = 'setCommentQueryPageNo'
 export const SET_PARENT_COMMENT_ID = 'setParentCommentId'
 export const SET_FOCUS_MODE = 'setFocusMode'

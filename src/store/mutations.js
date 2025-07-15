@@ -1,6 +1,6 @@
 import {
-	SET_COMMENT_QUERY_PAGE,
-	SET_COMMENT_QUERY_ARTICLE_ID,
+	SET_COMMENT_QUERY_OBJECT_TYPE,
+	SET_COMMENT_QUERY_OBJECT_ID,
 	SET_COMMENT_QUERY_PAGE_NO,
 	SET_PARENT_COMMENT_ID,
 	SET_WEB_TITLE_SUFFIX,
@@ -14,11 +14,11 @@ export default {
 	[SET_WEB_TITLE_SUFFIX](state, webTitleSuffix) {
 		state.webTitleSuffix = webTitleSuffix
 	},
-	[SET_COMMENT_QUERY_PAGE](state , page) {
-		state.commentQueryParams.page = page
+	[SET_COMMENT_QUERY_OBJECT_TYPE](state , objectType) {
+		state.commentQueryParams.objectType = objectType
 	},
-	[SET_COMMENT_QUERY_ARTICLE_ID](state , articleId) {
-		state.commentQueryParams.articleId = articleId
+	[SET_COMMENT_QUERY_OBJECT_ID](state , objectId) {
+		state.commentQueryParams.objectId = objectId
 	},
 	[SET_COMMENT_QUERY_PAGE_NO](state , pageNo) {
 		state.commentQueryParams.pageNo = pageNo

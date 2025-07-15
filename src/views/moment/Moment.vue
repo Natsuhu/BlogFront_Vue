@@ -65,7 +65,7 @@
 import Comment from "@/components/comment/Comment"
 import {Notification} from "element-ui"
 import {getPublicMoments, likeMoment} from '@/request/api/Moment'
-import {SET_COMMENT_QUERY_PAGE, SET_COMMENT_QUERY_ARTICLE_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
+import {SET_COMMENT_QUERY_OBJECT_TYPE, SET_COMMENT_QUERY_OBJECT_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
 import {mapState} from "vuex"
 
 export default {
@@ -162,8 +162,8 @@ export default {
       //如果评论组件打开则获取评论数据
       if (this.isOpenComment) {
         this.$store.commit(SET_COMMENT_QUERY_PAGE_NO, 1)
-        this.$store.commit(SET_COMMENT_QUERY_PAGE, 6)
-        this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, momentId)
+        this.$store.commit(SET_COMMENT_QUERY_OBJECT_TYPE, 6)
+        this.$store.commit(SET_COMMENT_QUERY_OBJECT_ID, momentId)
         this.$store.dispatch('getComments')
       }
     },

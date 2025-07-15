@@ -6,9 +6,9 @@ export default {
 		rollText: [],
 	},
 	commentQueryParams: {
-		//页面类型(0文章、1友链、2关于我)
-		page: 0,
-		articleId: null,
+		//页面类型(0文章、1友链、2关于我、6动态)
+		objectType: 0,
+		objectId: null,
 		pageNo: 1,
 		pageSize: 5
 	},

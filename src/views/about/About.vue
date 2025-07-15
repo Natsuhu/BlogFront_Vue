@@ -41,7 +41,7 @@
 <script>
 import Comment from "@/components/comment/Comment"
 import {getAboutPageSetting} from "@/request/api/About"
-import {SET_COMMENT_QUERY_PAGE, SET_COMMENT_QUERY_ARTICLE_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
+import {SET_COMMENT_QUERY_OBJECT_TYPE, SET_COMMENT_QUERY_OBJECT_ID, SET_COMMENT_QUERY_PAGE_NO} from "@/store/mutations-types"
 import {mapState} from 'vuex'
 
 export default {
@@ -56,8 +56,8 @@ export default {
       content: '',
       musicId: '',
       musicServer: '',
-      page: 3,
-      articleId: null
+      objectType: 3,
+      objectId: null
     }
   },
   created() {
@@ -84,8 +84,8 @@ export default {
     },
     init() {
       this.$store.commit(SET_COMMENT_QUERY_PAGE_NO, 1)
-      this.$store.commit(SET_COMMENT_QUERY_PAGE, this.page)
-      this.$store.commit(SET_COMMENT_QUERY_ARTICLE_ID, this.articleId)
+      this.$store.commit(SET_COMMENT_QUERY_OBJECT_TYPE, this.objectType)
+      this.$store.commit(SET_COMMENT_QUERY_OBJECT_ID, this.objectId)
     }
   },
   components: {
@@ -96,6 +96,6 @@ export default {
 
 <style scoped>
 .twelve.wide {
-  padding: 0px !important;
+  padding: 0 !important;
 }
 </style>
