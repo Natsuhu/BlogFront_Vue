@@ -18,9 +18,11 @@
           <keep-alive include="Home">
             <router-view class="base_animate"/>
           </keep-alive>
-          <el-tooltip class="item" effect="dark" content="开启\关闭高斯模糊" placement="top-start">
-            <el-button @click="changeFilterStatus" class="base_switch" icon="el-icon-set-up" circle />
-          </el-tooltip>
+              <!-- 暂时无需 -->
+<!--          <el-tooltip class="item" effect="dark" content="开启\关闭高斯模糊" placement="top-start">-->
+<!--            <el-button @click="changeFilterStatus" class="base_switch" icon="el-icon-set-up" circle />-->
+<!--          </el-tooltip>-->
+
           <el-backtop />
         </div>
       </div>
