@@ -25,7 +25,9 @@
             </div>
           </div>
           <!-- 播放器和正文 -->
-          <meting-js :server="musicServer" type="song" :id="musicId" theme="#25CCF7" v-if="musicId !== '' && content !== ''"></meting-js>
+          <meting-js :server="musicServer" type="song" :id="musicId" theme="#25CCF7"  list-folded="true"
+                     v-if="musicServer !== 'local' && musicId !== '' && content !== ''" />
+          <meting-js :server="musicServer" :api="musicApi" type="song" :id="musicId" theme="#25CCF7" v-if="musicServer === 'local' && musicId !== '' && content !== ''" />
           <div v-if="content !== ''" class="typo content base_margin_tb_large" v-html="content"></div>
         </div>
         <!--评论区-->
@@ -56,6 +58,7 @@ export default {
       content: '',
       musicId: '',
       musicServer: '',
+      musicApi: window.env.API_BASE_URL + '/music/api?id=:id&type=:type',
       objectType: 3,
       objectId: null
     }
